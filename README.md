@@ -8,7 +8,7 @@ Site comercial em português, construído em Next.js. Serviços, casos de projet
 
 ## Ativar o WhatsApp comercial
 
-Configure `COSAQ_WHATSAPP_NUMBER` no ambiente da hospedagem com o número comercial confirmado, incluindo o código do país e apenas dígitos (sem +, espaços ou pontuação). Publique uma nova versão após configurar. Nenhum número foi inventado ou reutilizado de outro projeto.
+O número comercial confirmado pelo responsável é +1 813 591-7560 (`18135917560`), utilizado como padrão. Para substituí-lo, configure `COSAQ_WHATSAPP_NUMBER` no ambiente da hospedagem com o número completo e apenas dígitos (sem +, espaços ou pontuação) e publique uma nova versão.
 
 Sem um número válido, o briefing permite salvar um resumo e informa que o canal ainda não está disponível. Com o número, o cliente revisa a mensagem, abre o WhatsApp e confirma o envio. O site não anuncia recebimento de um pedido só por preparar ou abrir a mensagem.
 
@@ -18,4 +18,4 @@ Dados comerciais em `lib/content.ts`. Atualizar o estágio dos projetos conforme
 
 ## Antes de produção
 
-Confirmar número e testar envio até o WhatsApp do responsável; conferir informações comerciais e privacidade; validar navegação em celular e computador. Não há e-mail de recebimento configurado nem armazenamento de leads no formulário. Não há garantia de ranking ou vendas. Gestão de redes sociais é identificada como uma área em preparação.
+Testar envio até o WhatsApp do responsável; conferir informações comerciais e privacidade; validar navegação em celular e computador. Não há e-mail de recebimento configurado nem armazenamento de leads no formulário. Não há garantia de ranking ou vendas. Gestão de redes sociais é identificada como uma área em preparação.

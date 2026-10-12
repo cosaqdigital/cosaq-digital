@@ -7,7 +7,7 @@ export const metadata = pageMetadata(
   "/contato",
 );
 export default function Contact() {
-  const number = process.env.COSAQ_WHATSAPP_NUMBER?.trim();
+  const number = process.env.COSAQ_WHATSAPP_NUMBER?.trim() || "18135917560";
   const whatsapp = number && /^[1-9]\d{9,14}$/.test(number) ? number : null;
   return (
     <main id="conteudo">
@@ -29,6 +29,18 @@ export default function Contact() {
             Atendimento em português para empresas no Brasil e nos Estados
             Unidos.
           </p>
+          {whatsapp ? (
+            <p>
+              <a
+                className="text-link"
+                href={`https://wa.me/${whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Conversar diretamente no WhatsApp ↗
+              </a>
+            </p>
+          ) : null}
           <p>
             O formulário prepara uma mensagem. O pedido só é enviado quando você
             confirma o envio no WhatsApp.
