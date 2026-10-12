@@ -1,26 +1,21 @@
 # COSAQ Digital
 
-Institutional homepage for COSAQ Digital, built with Next.js, TypeScript, Tailwind CSS and Framer Motion.
+Site comercial em português, construído em Next.js. Serviços, casos de projetos, empresa, briefing de contato, privacidade e SEO técnico.
 
-## Getting Started
+## Executar
 
-Install dependencies:
+`npm ci`, `npm run dev`. Validar com `npx tsc --noEmit` e `npm run build`.
 
-```bash
-npm install
-```
+## Ativar o WhatsApp comercial
 
-Run the development server:
+Configure `COSAQ_WHATSAPP_NUMBER` no ambiente da hospedagem com o número comercial confirmado, incluindo o código do país e apenas dígitos (sem +, espaços ou pontuação). Publique uma nova versão após configurar. Nenhum número foi inventado ou reutilizado de outro projeto.
 
-```bash
-npm run dev
-```
+Sem um número válido, o briefing permite salvar um resumo e informa que o canal ainda não está disponível. Com o número, o cliente revisa a mensagem, abre o WhatsApp e confirma o envio. O site não anuncia recebimento de um pedido só por preparar ou abrir a mensagem.
 
-Open `http://localhost:3000` in your browser.
+## Conteúdo e análise
 
-## Scripts
+Dados comerciais em `lib/content.ts`. Atualizar o estágio dos projetos conforme evolução confirmada. Google Analytics preserva a propriedade existente e só carrega mediante consentimento. Canonical e sitemap usam https://www.cosaqdigital.com.
 
-- `npm run dev` starts the local development server.
-- `npm run build` creates a production build.
-- `npm run start` runs the production server.
-- `npm run lint` checks the app and components.
+## Antes de produção
+
+Confirmar número e testar envio até o WhatsApp do responsável; conferir informações comerciais e privacidade; validar navegação em celular e computador. Não há e-mail de recebimento configurado nem armazenamento de leads no formulário. Não há garantia de ranking ou vendas. Gestão de redes sociais é identificada como uma área em preparação.
