@@ -1,8 +1,9 @@
+import { DeviceShowcase, AutomationVisual } from "@/components/DeviceShowcase";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, siteUrl } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { PageIntro, CTA } from "@/components/Commercial";
+import { CTA } from "@/components/Commercial";
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
@@ -42,11 +43,35 @@ export default async function Service({
           }),
         }}
       />
-      <PageIntro
-        eyebrow="Soluções COSAQ"
-        title={s.title}
-        description={s.intro}
-      />
+      <section className="shell solution-hero">
+        <div>
+          <p className="eyebrow">Nossas soluções</p>
+          <h1>{s.title}</h1>
+          <p className="solution-promise">{s.short}</p>
+          <p>{s.intro}</p>
+          <Link href="/contato" className="button">
+            Quero uma proposta para meu projeto ↗
+          </Link>
+        </div>
+        {s.slug === "automacoes" || s.slug === "plataformas-e-sistemas" ? (
+          <AutomationVisual />
+        ) : (
+          <DeviceShowcase
+            image={
+              s.slug === "blogs-e-conteudo"
+                ? "/projects/familiausa1.png"
+                : "/projects/casal-arqeng.png"
+            }
+            title={
+              s.slug === "blogs-e-conteudo"
+                ? "FamíliaUSA1"
+                : "CASAL Arquitetura & Engenharia"
+            }
+            caption="Projeto desenvolvido pela COSAQ Digital · Apresentação visual"
+            priority
+          />
+        )}
+      </section>
       <section className="shell content-section detail-grid">
         <div className="prose">
           <Link className="breadcrumb" href="/servicos">

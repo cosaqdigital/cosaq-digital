@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { DeviceShowcase } from "@/components/DeviceShowcase";
 import { CTA, ProjectGrid, ServiceGrid } from "@/components/Commercial";
 import { faqs, siteUrl } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
@@ -40,27 +40,27 @@ export default function Home() {
           <div className="sales-hero-grid">
             <div>
               <h1>
-                Seu trabalho
+                Design que
                 <br />
-                já tem valor.
+                valoriza sua marca.
                 <br />
                 <span>
-                  Sua presença digital
+                  Tecnologia que
                   <br />
-                  precisa mostrar.
+                  move seu negócio.
                 </span>
               </h1>
               <p className="sales-lead">
-                Desenvolvemos sites que valorizam sua empresa, plataformas que
-                colocam seu negócio em movimento e automações que simplificam
-                sua operação.
+                Criamos sites profissionais, plataformas e automações para sua
+                empresa ser bem apresentada, receber oportunidades e trabalhar
+                com mais organização.
               </p>
               <div className="hero-actions">
                 <Link href="/contato" className="button">
-                  Quero uma proposta ↗
+                  Vamos criar seu projeto ↗
                 </Link>
                 <Link href="#projetos" className="sales-secondary">
-                  Veja o que desenvolvemos ↓
+                  Conheça nossos projetos ↓
                 </Link>
               </div>
               <p className="sales-reassurance">
@@ -68,41 +68,12 @@ export default function Home() {
                 começar.
               </p>
             </div>
-            <div className="hero-real-project">
-              <div className="browser-bar">
-                <span aria-hidden="true">● ● ●</span>
-                <span>getestimatefast.com</span>
-                <span aria-hidden="true">↗</span>
-              </div>
-              <Link
-                href="/projetos/getestimatefast"
-                className="hero-project-image"
-                aria-label="Conhecer o desenvolvimento do GetEstimateFast"
-              >
-                <Image
-                  src="/projects/getestimatefast.png"
-                  alt="Tela real do GetEstimateFast, projeto desenvolvido pela COSAQ Digital"
-                  fill
-                  priority
-                  sizes="(min-width:1200px) 550px, (min-width:900px) 47vw, 92vw"
-                />
-              </Link>
-              <div className="hero-project-caption">
-                <div>
-                  <span>PROJETO DESENVOLVIDO</span>
-                  <strong>GetEstimateFast</strong>
-                </div>
-                <Link
-                  href="/projetos/getestimatefast"
-                  aria-label="Ver o projeto GetEstimateFast"
-                >
-                  ↗
-                </Link>
-              </div>
-              <p className="real-project-note">
-                Plataforma de orçamentos · Mercado americano · Em finalização
-              </p>
-            </div>
+            <DeviceShowcase
+              image="/projects/casal-arqeng.png"
+              title="CASAL Arquitetura & Engenharia"
+              caption="Projeto desenvolvido pela COSAQ Digital · Apresentação institucional"
+              priority
+            />
           </div>
           <div className="hero-bottom-line">
             <span>Presença que transmite confiança.</span>

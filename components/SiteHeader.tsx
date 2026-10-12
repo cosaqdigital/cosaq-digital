@@ -20,9 +20,21 @@ export function SiteHeader() {
           aria-label="COSAQ Digital — início"
           onClick={() => setOpen(false)}
         >
-          <span className="brand-mark">
-            C<span>↗</span>
-          </span>
+          <svg className="brand-symbol" viewBox="0 0 100 60" aria-hidden="true">
+            <path
+              d="M56 17C46 2 22 1 11 15C0 29 10 51 28 51C40 51 47 42 54 33"
+              fill="none"
+              stroke="white"
+              strokeWidth="9"
+            />
+            <path
+              d="M43 43C54 58 77 58 88 44C99 29 89 9 72 9C59 9 52 18 46 26"
+              fill="none"
+              stroke="#0066ff"
+              strokeWidth="9"
+            />
+            <path d="M29 21L68 41" stroke="#0066ff" strokeWidth="8" />
+          </svg>
           <span>
             COSAQ<span className="brand-sub">DIGITAL</span>
           </span>

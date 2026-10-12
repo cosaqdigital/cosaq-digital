@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { DeviceShowcase } from "@/components/DeviceShowcase";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/content";
@@ -29,15 +29,12 @@ export default async function Project({
       <PageIntro eyebrow={p.type} title={p.title} description={p.summary} />
       <section className="shell content-section">
         {p.image ? (
-          <div className="project-detail-media">
-            <Image
-              src={p.image}
-              alt={`Apresentação do projeto ${p.title}`}
-              fill
-              sizes="(min-width: 1200px) 1180px, 95vw"
-              priority
-            />
-          </div>
+          <DeviceShowcase
+            image={p.image}
+            title={p.title}
+            caption="Projeto desenvolvido pela COSAQ Digital · Apresentação visual"
+            priority
+          />
         ) : null}
         <div className="detail-grid">
           <div className="prose">
