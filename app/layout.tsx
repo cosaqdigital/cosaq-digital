@@ -1,58 +1,39 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import Script from "next/script";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { AnalyticsConsent } from "@/components/AnalyticsConsent";
+import { siteUrl } from "@/lib/content";
 import "./globals.css";
-
-const googleTagId = "G-JYT86CVGNS";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "COSAQ Digital | Modern Digital Solutions",
-  description:
-    "Modern websites and digital solutions designed to help businesses create trust, attract customers, and grow online.",
-  metadataBase: new URL("https://cosaqdigital.com"),
-  openGraph: {
-    title: "COSAQ Digital | Modern Digital Solutions",
-    description:
-      "Modern websites and digital solutions designed to help businesses create trust, attract customers, and grow online.",
-    url: "https://cosaqdigital.com",
-    siteName: "COSAQ Digital",
-    type: "website",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "COSAQ Digital | Sites, plataformas e automações",
+    template: "%s | COSAQ Digital",
   },
+  description:
+    "Desenvolvimento e gestão de soluções digitais: sites profissionais, plataformas, automações e blogs. Atendimento em português para empresas no Brasil e nos EUA.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    siteName: "COSAQ Digital",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
 };
-
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="pt-BR">
       <body>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-tag" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${googleTagId}');
-          `}
-        </Script>
+        <a className="skip-link" href="#conteudo">
+          Pular para o conteúdo
+        </a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
+        <AnalyticsConsent />
       </body>
     </html>
   );
