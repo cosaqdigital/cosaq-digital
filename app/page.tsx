@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CTA, ProjectGrid, ServiceGrid } from "@/components/Commercial";
 import { faqs, siteUrl } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata(
-  "Sites, plataformas e automações",
-  "A COSAQ Digital desenvolve sites profissionais, plataformas, automações e blogs. Conheça nossos projetos e converse sobre a solução para sua empresa.",
+  "Criação de sites, plataformas e automações para empresas",
+  "Sua empresa merece uma presença digital à altura do que entrega. A COSAQ desenvolve sites, plataformas e automações. Conheça os projetos e solicite uma proposta.",
   "/",
 );
 export default function Home() {
   return (
-    <main id="conteudo">
+    <main id="conteudo" className="commercial-home">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -28,151 +29,234 @@ export default function Home() {
           }),
         }}
       />
-      <section className="hero shell">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="live-dot" /> Desenvolvimento e gestão digital
-          </p>
-          <h1>
-            Seu negócio.
-            <br />
-            Sua próxima
-            <br />
-            <span className="accent">solução digital.</span>
-          </h1>
-          <p>
-            Sites que representam sua empresa. Plataformas que organizam sua
-            operação. Automações que conectam o trabalho.
-          </p>
-          <div className="hero-actions">
-            <Link href="/contato" className="button">
-              Conversar sobre meu projeto ↗
-            </Link>
-            <Link href="/projetos" className="button button-ghost">
-              Conhecer nossos projetos
-            </Link>
+      <section className="sales-hero">
+        <div className="shell">
+          <div className="sales-hero-top">
+            <p className="eyebrow">
+              COSAQ DIGITAL / DESIGN, DESENVOLVIMENTO E ESTRATÉGIA
+            </p>
+            <span className="hero-location">Brasil & Estados Unidos</span>
           </div>
-          <p className="hero-note">
-            Atendimento em português · Brasil e Estados Unidos
-          </p>
-        </div>
-        <div className="hero-showcase">
-          <div className="showcase-label">
-            <span>DA IDEIA À OPERAÇÃO</span>
-            <span className="accent">COSAQ ↗</span>
-          </div>
-          <div className="showcase-platform">
-            <span className="product-chip">
-              NOSSA EXPERIÊNCIA EM PLATAFORMAS
-            </span>
-            <h2>
-              Mais que uma página.
-              <br />
-              Um negócio conectado.
-            </h2>
-            <div className="showcase-products">
-              <Link href="/projetos/orcamentos-brasil">
-                <span className="platform-symbol green">OB</span>
-                <div>
-                  <strong>Orçamentos Brasil</strong>
-                  <small>Plataforma de serviços</small>
-                </div>
+          <div className="sales-hero-grid">
+            <div>
+              <h1>
+                Seu trabalho
+                <br />
+                já tem valor.
+                <br />
+                <span>
+                  Sua presença digital
+                  <br />
+                  precisa mostrar.
+                </span>
+              </h1>
+              <p className="sales-lead">
+                Desenvolvemos sites que valorizam sua empresa, plataformas que
+                colocam seu negócio em movimento e automações que simplificam
+                sua operação.
+              </p>
+              <div className="hero-actions">
+                <Link href="/contato" className="button">
+                  Quero uma proposta ↗
+                </Link>
+                <Link href="#projetos" className="sales-secondary">
+                  Veja o que desenvolvemos ↓
+                </Link>
+              </div>
+              <p className="sales-reassurance">
+                Atendimento em português. Escopo e etapas definidos antes de
+                começar.
+              </p>
+            </div>
+            <div className="hero-real-project">
+              <div className="browser-bar">
+                <span aria-hidden="true">● ● ●</span>
+                <span>getestimatefast.com</span>
                 <span aria-hidden="true">↗</span>
+              </div>
+              <Link
+                href="/projetos/getestimatefast"
+                className="hero-project-image"
+                aria-label="Conhecer o desenvolvimento do GetEstimateFast"
+              >
+                <Image
+                  src="/projects/getestimatefast.png"
+                  alt="Tela real do GetEstimateFast, projeto desenvolvido pela COSAQ Digital"
+                  fill
+                  priority
+                  sizes="(min-width:1200px) 550px, (min-width:900px) 47vw, 92vw"
+                />
               </Link>
-              <Link href="/projetos/getestimatefast">
-                <span className="platform-symbol">GE</span>
+              <div className="hero-project-caption">
                 <div>
+                  <span>PROJETO DESENVOLVIDO</span>
                   <strong>GetEstimateFast</strong>
-                  <small>Produto em finalização · EUA</small>
                 </div>
-                <span aria-hidden="true">↗</span>
-              </Link>
+                <Link
+                  href="/projetos/getestimatefast"
+                  aria-label="Ver o projeto GetEstimateFast"
+                >
+                  ↗
+                </Link>
+              </div>
+              <p className="real-project-note">
+                Plataforma de orçamentos · Mercado americano · Em finalização
+              </p>
             </div>
           </div>
-          <div className="showcase-footer">
-            <span>Estratégia</span>
-            <span aria-hidden="true">→</span>
-            <span>Construção</span>
-            <span aria-hidden="true">→</span>
-            <span>Evolução</span>
+          <div className="hero-bottom-line">
+            <span>Presença que transmite confiança.</span>
+            <span>Tecnologia que resolve processos.</span>
+            <span>Um projeto com direção.</span>
           </div>
         </div>
       </section>
-      <div className="expertise-strip">
+      <section className="project-names">
         <div className="shell">
-          <span>Sites profissionais</span>
-          <span>Plataformas web</span>
-          <span>Automações</span>
-          <span>Blogs e conteúdo</span>
+          <span>Projetos desenvolvidos</span>
+          <Link href="/projetos/orcamentos-brasil">Orçamentos Brasil</Link>
+          <Link href="/projetos/getestimatefast">GetEstimateFast</Link>
+          <Link href="/projetos/familiausa1">FamíliaUSA1</Link>
+          <Link href="/projetos/casal-arquitetura">CASAL</Link>
         </div>
-      </div>
-      <section className="section shell">
+      </section>
+      <section className="section shell business-value">
+        <div>
+          <p className="eyebrow">Sua empresa na decisão do cliente</p>
+          <h2>
+            Antes de conversar com você,
+            <br />o cliente precisa
+            <br />
+            <em>confiar no que vê.</em>
+          </h2>
+        </div>
+        <div className="value-copy">
+          <p>
+            Quem chega ao seu site quer entender o que você faz, ver seu
+            trabalho e saber como contratar. Uma apresentação confusa ou pouco
+            profissional pode interromper essa conversa antes de ela começar.
+          </p>
+          <p>
+            A COSAQ reúne design, conteúdo e desenvolvimento para tornar esse
+            caminho claro: da primeira impressão ao pedido de orçamento.
+          </p>
+          <Link href="/servicos/sites-profissionais" className="text-link">
+            Conheça nossa criação de sites ↗
+          </Link>
+        </div>
+      </section>
+      <section className="section work-feature" id="projetos">
+        <div className="shell">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Portfólio / desenvolvimento aplicado</p>
+              <h2>
+                Conheça a qualidade
+                <br />
+                do que <em>construímos.</em>
+              </h2>
+            </div>
+            <p>
+              De uma presença comercial a uma plataforma com cadastros,
+              pagamentos e regras de operação. Explore os projetos e veja o
+              desenvolvimento na prática.
+            </p>
+          </div>
+          <ProjectGrid featured />
+          <Link href="/projetos" className="button button-ghost">
+            Explorar o portfólio completo ↗
+          </Link>
+        </div>
+      </section>
+      <section className="section shell solutions-section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">O que podemos construir</p>
+            <p className="eyebrow">Soluções para o seu negócio</p>
             <h2>
-              A solução começa
+              O que você quer
               <br />
-              pelo seu negócio.
+              <em>fazer acontecer?</em>
             </h2>
           </div>
           <p>
-            Entendemos o que você precisa resolver antes de definir páginas,
-            ferramentas ou integrações.
+            Apresentar melhor sua empresa, captar pedidos ou organizar uma
+            operação. Escolha o objetivo; nós estruturamos o projeto.
           </p>
         </div>
         <ServiceGrid />
       </section>
-      <section className="section light-section">
-        <div className="shell">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Experiência aplicada</p>
-              <h2>
-                Também construímos
-                <br />
-                nossos próprios produtos.
-              </h2>
-            </div>
+      <section className="platform-statement">
+        <div className="shell platform-statement-grid">
+          <div>
+            <p className="eyebrow">Sistemas e plataformas</p>
+            <h2>
+              Sua ideia pode virar
+              <br />
+              uma operação digital.
+            </h2>
             <p>
-              Da solicitação do cliente às regras de operação: nossos projetos
-              mostram como conectamos as partes de uma solução digital.
+              Um projeto com usuários, oportunidades, pagamentos e notificações
+              precisa de funções que trabalhem juntas. Desenvolvemos esses
+              caminhos a partir das regras do seu negócio.
             </p>
+            <Link href="/servicos/plataformas-e-sistemas" className="button">
+              Quero desenvolver uma plataforma ↗
+            </Link>
           </div>
-          <ProjectGrid featured />
-          <Link href="/projetos" className="button button-dark">
-            Ver todos os projetos ↗
-          </Link>
+          <div className="platform-scope">
+            <p>EXPERIÊNCIA DEMONSTRADA NO ORÇAMENTOS BRASIL</p>
+            <ul>
+              <li>
+                <span>01</span> Cadastro e acesso de usuários
+              </li>
+              <li>
+                <span>02</span> Distribuição de oportunidades
+              </li>
+              <li>
+                <span>03</span> Carteira e pagamentos
+              </li>
+              <li>
+                <span>04</span> Notificações e administração
+              </li>
+            </ul>
+            <Link href="/projetos/orcamentos-brasil" className="text-link">
+              Conhecer o projeto completo ↗
+            </Link>
+          </div>
         </div>
       </section>
       <section className="section shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Como trabalhamos</p>
-            <h2>Clareza em cada etapa.</h2>
+            <p className="eyebrow">Da proposta à publicação</p>
+            <h2>
+              Você acompanha o projeto.
+              <br />
+              Nós conduzimos a execução.
+            </h2>
           </div>
           <p>
-            O projeto precisa fazer sentido para você, desde a primeira conversa
-            até a entrega.
+            Uma contratação com entregas definidas, espaço para revisão e
+            responsabilidades claras.
           </p>
         </div>
         <ol className="steps">
           {[
             [
-              "Entendemos",
-              "Seu público, sua operação e o problema que o projeto precisa resolver.",
+              "Diagnóstico",
+              "Entendemos sua empresa, seu público e o objetivo do projeto.",
             ],
             [
-              "Definimos",
-              "Uma proposta com entregas, etapas, responsabilidades e condições.",
+              "Proposta",
+              "Você recebe o escopo, as etapas, os prazos e as condições comerciais.",
             ],
             [
-              "Construímos",
-              "Design, desenvolvimento e revisão dos fluxos previstos no escopo.",
+              "Desenvolvimento",
+              "Construímos o visual e as funções, com revisão do que foi combinado.",
             ],
             [
-              "Evoluímos",
-              "Publicação e orientação, com manutenção quando contratada.",
+              "Publicação",
+              "Validamos a entrega e orientamos o uso. Manutenção e evolução podem ser contratadas.",
             ],
           ].map(([title, text], i) => (
             <li key={title}>
@@ -183,29 +267,13 @@ export default function Home() {
           ))}
         </ol>
       </section>
-      <section className="section shell about-teaser">
-        <p className="eyebrow">A empresa por trás dos projetos</p>
-        <h2>
-          Desenvolvimento com visão
-          <br />
-          de quem também opera.
-        </h2>
-        <p>
-          A COSAQ reúne criação e evolução de produtos próprios com soluções
-          para outras empresas. Essa experiência orienta nosso cuidado com
-          conteúdo, atendimento e processos.
-        </p>
-        <Link href="/sobre" className="text-link">
-          Conheça a COSAQ Digital ↗
-        </Link>
-      </section>
       <section className="section shell faq-section">
         <div>
-          <p className="eyebrow">Antes de começar</p>
+          <p className="eyebrow">Contrate com clareza</p>
           <h2>
-            Perguntas que
+            O que você precisa
             <br />
-            merecem respostas.
+            saber para começar.
           </h2>
         </div>
         <div className="faq-list">

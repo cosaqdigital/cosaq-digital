@@ -2,7 +2,7 @@ import { CTA, PageIntro } from "@/components/Commercial";
 import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata(
   "Sobre a COSAQ Digital",
-  "Conheça a atuação da COSAQ no desenvolvimento e na gestão de plataformas próprias, sites, blogs e automações para empresas.",
+  "Conheça a atuação da COSAQ no desenvolvimento e na gestão de plataformas, sites, blogs e automações para empresas.",
   "/sobre",
 );
 export default function About() {
@@ -11,16 +11,16 @@ export default function About() {
       <PageIntro
         eyebrow="A empresa por trás das soluções"
         title="Construímos. Operamos. Evoluímos."
-        description="A COSAQ Digital reúne desenvolvimento de projetos e experiência na gestão de produtos digitais próprios."
+        description="A COSAQ Digital reúne desenvolvimento de projetos e experiência na gestão de produtos digitais."
       />
       <section className="shell content-section detail-grid">
         <div className="prose">
           <h2>Uma atuação que vai além da publicação.</h2>
           <p>
             Nosso trabalho abrange sites profissionais, blogs, plataformas e
-            automações. Em produtos próprios como Orçamentos Brasil e
-            GetEstimateFast, acompanhamos também as decisões e os processos que
-            fazem parte da evolução de uma plataforma.
+            automações. Em projetos como Orçamentos Brasil e GetEstimateFast,
+            acompanhamos também as decisões e os processos que fazem parte da
+            evolução de uma plataforma.
           </p>
           <h2>Quem está por trás</h2>
           <p>

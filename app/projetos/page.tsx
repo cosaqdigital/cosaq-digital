@@ -10,18 +10,17 @@ export default function Projects() {
     <main id="conteudo">
       <PageIntro
         eyebrow="Portfólio"
-        title="Nossa experiência tem projetos para mostrar."
-        description="Plataformas próprias, presença comercial e conteúdo editorial. Conheça o problema e o trabalho por trás de cada projeto."
+        title="Projetos que mostram o que podemos construir."
+        description="Sites, plataformas e experiências editoriais desenvolvidos pela COSAQ. Explore as funções, o objetivo e a construção de cada projeto."
       />
       <section className="shell content-section">
         <ProjectGrid />
         <div className="prose">
-          <h2>Projetos próprios também são experiência real.</h2>
+          <h2>Desenvolvimento que você pode explorar.</h2>
           <p>
-            Identificamos o papel de cada projeto no portfólio. As plataformas
-            próprias permitem aprender com a operação e orientar sua evolução;
-            os projetos institucionais mostram outras aplicações do nosso
-            trabalho.
+            Cada projeto tem um objetivo e uma forma de funcionar. Nas páginas
+            do portfólio, apresentamos o que foi desenvolvido, as funções e o
+            estágio atual do trabalho.
           </p>
         </div>
       </section>

@@ -5,7 +5,7 @@ export const services = [
     number: "01",
     title: "Sites profissionais",
     short:
-      "Sua empresa bem apresentada. Seus serviços fáceis de entender. Um próximo passo claro para o cliente.",
+      "Apresente seu trabalho com a qualidade que ele merece e facilite o próximo pedido de orçamento.",
     intro:
       "Um site precisa representar sua empresa e ajudar quem visita a entender por que entrar em contato.",
     deliverables: [
@@ -25,7 +25,7 @@ export const services = [
     number: "02",
     title: "Plataformas e sistemas web",
     short:
-      "Quando seu negócio precisa de cadastros, painéis, pagamentos e processos conectados.",
+      "Transforme sua ideia em uma plataforma com usuários, pagamentos e processos definidos para o seu negócio.",
     intro:
       "Transformamos uma necessidade de operação em uma aplicação web com funções e regras definidas para o seu negócio.",
     deliverables: [
@@ -45,7 +45,7 @@ export const services = [
     number: "03",
     title: "Automações e integrações",
     short:
-      "Menos tarefas repetidas. Mais organização entre formulários, notificações e ferramentas.",
+      "Reduza tarefas repetidas e conecte seu atendimento às ferramentas que sua empresa utiliza.",
     intro:
       "Conectamos etapas do seu atendimento e da sua operação para reduzir tarefas manuais e organizar informações.",
     deliverables: [
@@ -65,7 +65,7 @@ export const services = [
     number: "04",
     title: "Blogs e estrutura de conteúdo",
     short:
-      "Uma base organizada para publicar conhecimento e responder às dúvidas de quem procura sua empresa.",
+      "Transforme seu conhecimento em conteúdo que explica seus serviços e responde às dúvidas dos clientes.",
     intro:
       "Construímos blogs e áreas de conteúdo com navegação, categorias e uma estrutura preparada para publicação contínua.",
     deliverables: [
@@ -85,7 +85,7 @@ export const projects = [
   {
     slug: "orcamentos-brasil",
     title: "Orçamentos Brasil",
-    type: "Plataforma própria · Brasil",
+    type: "Plataforma de serviços · Brasil",
     status: "Em operação e evolução",
     summary:
       "Uma plataforma que conecta pedidos de serviços e profissionais, com regras de distribuição e acesso às oportunidades.",
@@ -105,7 +105,7 @@ export const projects = [
   {
     slug: "getestimatefast",
     title: "GetEstimateFast",
-    type: "Plataforma própria · Estados Unidos",
+    type: "Plataforma de orçamentos · Estados Unidos",
     status: "Em desenvolvimento e finalização",
     summary:
       "Uma experiência de solicitação de orçamentos para serviços locais, preparada para o mercado americano.",
@@ -125,7 +125,7 @@ export const projects = [
   {
     slug: "familiausa1",
     title: "FamíliaUSA1",
-    type: "Projeto editorial próprio",
+    type: "Blog e projeto editorial",
     status: "Blog e conteúdo",
     summary:
       "Um projeto editorial com artigos e categorias para organizar informações sobre a vida nos Estados Unidos.",
@@ -145,7 +145,7 @@ export const projects = [
   {
     slug: "wbnextlevel",
     title: "WBNextLevel",
-    type: "Presença comercial própria",
+    type: "Site comercial de serviços",
     status: "Site de serviços",
     summary:
       "Uma apresentação comercial de serviços de reformas, com projetos e caminhos para solicitar orçamento.",

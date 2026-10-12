@@ -27,8 +27,8 @@ export default function Image() {
             lineHeight: 1.1,
           }}
         >
-          <span>Seu negócio.</span>
-          <span style={{ color: "#67b6ff" }}>Sua próxima solução digital.</span>
+          <span>Sua empresa tem valor.</span>
+          <span style={{ color: "#67b6ff" }}>Mostre isso ao seu cliente.</span>
         </div>
         <div style={{ display: "flex", fontSize: 24, color: "#a9b4c3" }}>
           Sites · Plataformas · Automações · Blogs

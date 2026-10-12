@@ -6,19 +6,21 @@ export function CTA() {
     <section className="section cta-band">
       <div className="shell cta-inner">
         <div>
-          <p className="eyebrow">Vamos tirar sua ideia do papel</p>
+          <p className="eyebrow">
+            Vamos construir o próximo passo da sua empresa
+          </p>
           <h2>
-            O próximo passo começa
+            Sua empresa merece uma
             <br />
-            com uma boa conversa.
+            presença à altura.
           </h2>
           <p>
-            Conte o que sua empresa precisa. Vamos definir juntos o caminho para
-            o seu projeto.
+            Apresente seu negócio e seu objetivo. Vamos avaliar a solução e
+            preparar uma proposta com entregas, etapas e condições claras.
           </p>
         </div>
         <Link href="/contato" className="button">
-          Conversar sobre meu projeto <span aria-hidden="true">↗</span>
+          Solicitar minha proposta <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </section>
@@ -56,7 +58,7 @@ export function ServiceGrid() {
           </div>
           <h3>{s.title}</h3>
           <p>{s.short}</p>
-          <span className="text-link">Conhecer a solução</span>
+          <span className="text-link">Ver o que está incluído</span>
         </Link>
       ))}
     </div>
@@ -82,7 +84,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
               />
             ) : (
               <div className="platform-cover">
-                <span className="product-chip">PLATAFORMA PRÓPRIA</span>
+                <span className="product-chip">PLATAFORMA DESENVOLVIDA</span>
                 <strong>
                   Orçamentos
                   <br />
