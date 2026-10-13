@@ -18,14 +18,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "COSAQ Digital | Modern Digital Solutions",
+  title: "COSAQ Digital | Sites, Plataformas e Soluções Digitais",
   description:
-    "Modern websites and digital solutions designed to help businesses create trust, attract customers, and grow online.",
+    "Desenvolvemos sites profissionais, plataformas digitais, sistemas e automações para sua empresa conquistar clientes, organizar processos e crescer.",
   metadataBase: new URL("https://cosaqdigital.com"),
   openGraph: {
-    title: "COSAQ Digital | Modern Digital Solutions",
+    title: "COSAQ Digital | Sites, Plataformas e Soluções Digitais",
     description:
-      "Modern websites and digital solutions designed to help businesses create trust, attract customers, and grow online.",
+      "Desenvolvemos sites profissionais, plataformas digitais, sistemas e automações para sua empresa conquistar clientes, organizar processos e crescer.",
     url: "https://cosaqdigital.com",
     siteName: "COSAQ Digital",
     type: "website",
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
