@@ -1,43 +1,80 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
-import { MixedInterface } from "@/components/MixedInterface";
+import { Icon } from "@/components/Icon";
+import { ProjectPreview } from "@/components/ProjectPreview";
+import { contactHref, projects } from "@/lib/site";
 
 export function HeroSection() {
   return (
-    <section
-      id="home"
-      className="container-shell relative z-10 grid min-h-[88vh] scroll-mt-32 items-center gap-14 pb-16 pt-40 sm:pt-36 md:scroll-mt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 lg:pt-36"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-2xl"
-      >
-        <div className="mb-6 inline-flex rounded-full border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-sm font-medium text-cosaq-muted">
-          Strategic digital solutions for growing businesses
+    <section id="inicio" className="hero">
+      <div className="shell hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow hero-eyebrow">
+            <span className="status-dot" />
+            Tecnologia • Estratégia • Resultados
+          </p>
+          <h1>
+            Transformamos ideias em soluções digitais que fazem{" "}
+            <span>seu negócio avançar.</span>
+          </h1>
+          <p className="hero-description">
+            Criamos sites profissionais, plataformas e sistemas digitais para
+            empresas que querem conquistar mais clientes, ganhar eficiência e
+            crescer com mais estrutura.
+          </p>
+          <div className="hero-actions">
+            <ButtonLink href={contactHref()}>
+              Conversar sobre meu projeto
+            </ButtonLink>
+            <ButtonLink href="#projetos" variant="secondary">
+              Explorar nossos projetos
+            </ButtonLink>
+          </div>
+          <div className="hero-assurance">
+            <span>
+              <Icon name="check" width={17} height={17} />
+              Soluções para desafios reais
+            </span>
+            <span>
+              <Icon name="globe" width={17} height={17} />
+              Brasil e Estados Unidos
+            </span>
+          </div>
         </div>
-
-        <h1 className="font-display text-5xl font-semibold leading-[1.02] tracking-normal text-balance text-cosaq-white sm:text-6xl lg:text-7xl">
-          Technology evolves. Problem solving remains.
-        </h1>
-
-        <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-cosaq-muted sm:text-xl">
-          We build modern digital experiences designed to help businesses grow,
-          build trust and stand out online.
-        </p>
-
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="#contact">Start Your Project</ButtonLink>
-          <ButtonLink href="#work" variant="secondary">
-            View Our Work
-          </ButtonLink>
+        <div className="hero-showcase" aria-label="Projetos da COSAQ Digital">
+          <div className="showcase-label">
+            <span>Da ideia à experiência real</span>
+            <span className="showcase-marker">01 / 02</span>
+          </div>
+          <Link
+            href="/projetos/getestimatefast"
+            className="hero-project hero-project-primary"
+          >
+            <ProjectPreview project={projects[1]} priority />
+          </Link>
+          <Link
+            href="/projetos/orcamentos-brasil"
+            className="hero-project hero-project-secondary"
+          >
+            <ProjectPreview project={projects[0]} priority />
+          </Link>
+          <div className="showcase-footer">
+            <span className="status-dot" />
+            <span>Plataformas que conectam pessoas e negócios.</span>
+          </div>
         </div>
-      </motion.div>
-
-      <MixedInterface />
+      </div>
+      <div className="hero-bottom">
+        <div className="shell capability-strip">
+          <span>Estratégia antes do código.</span>
+          <span>Experiências pensadas para pessoas.</span>
+          <span>Tecnologia a serviço do negócio.</span>
+          <a href="#solucoes">
+            Conheça nossas soluções
+            <Icon name="arrow" width={17} height={17} />
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

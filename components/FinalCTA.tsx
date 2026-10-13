@@ -1,31 +1,40 @@
 import { ButtonLink } from "@/components/ButtonLink";
-import { SectionReveal } from "@/components/SectionReveal";
+import { Icon } from "@/components/Icon";
+import { contactHref } from "@/lib/site";
 
 export function FinalCTA() {
   return (
-    <SectionReveal
-      id="contact"
-      className="relative z-10 border-y border-white/[0.06] bg-white/[0.03] py-20 sm:py-24"
-    >
-      <div className="relative overflow-hidden">
-        <div className="absolute right-[10%] top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-cosaq-blue/18 blur-3xl" />
-        <div className="container-shell relative">
-          <div className="max-w-3xl">
-            <h2 className="font-display text-3xl font-semibold leading-tight text-balance sm:text-5xl">
-              Let&apos;s build something your business can grow on.
+    <section id="contato" className="section contact-section">
+      <div className="shell">
+        <div className="contact-panel">
+          <div>
+            <p className="eyebrow">O próximo passo é uma conversa</p>
+            <h2>
+              Sua próxima ideia
+              <br />
+              merece <span>ganhar forma.</span>
             </h2>
-            <p className="mt-5 max-w-2xl text-pretty text-lg leading-8 text-cosaq-muted">
-              Modern digital solutions designed to create trust, visibility and
-              long-term growth.
+            <p>
+              Conte o que você quer melhorar, construir ou transformar. Vamos
+              entender juntos o caminho para o seu negócio.
             </p>
-            <div className="mt-8">
-              <ButtonLink href="mailto:hello@cosaqdigital.com">
-                Start Your Project
-              </ButtonLink>
+            <div className="contact-market">
+              <Icon name="globe" width={17} height={17} />
+              Brasil e Estados Unidos. Comunicação em português.
             </div>
+          </div>
+          <div className="contact-actions">
+            <ButtonLink href={contactHref()}>
+              Conversar sobre meu projeto
+            </ButtonLink>
+            <a className="text-link" href="#diagnostico">
+              Ainda não sei por onde começar
+              <Icon name="arrow" width={18} height={18} />
+            </a>
+            <span>Comece pelo diagnóstico digital.</span>
           </div>
         </div>
       </div>
-    </SectionReveal>
+    </section>
   );
 }

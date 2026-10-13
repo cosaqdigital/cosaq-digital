@@ -1,22 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactNode } from "react";
 
 type SectionRevealProps = {
   id?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 };
-
-export function SectionReveal({ id, children, className = "" }: SectionRevealProps) {
+export function SectionReveal({
+  id,
+  children,
+  className = "",
+}: SectionRevealProps) {
+  const reducedMotion = useReducedMotion();
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-120px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`scroll-mt-32 md:scroll-mt-28 ${className}`}
+      initial={false}
+      whileInView={
+        reducedMotion ? undefined : { opacity: [0.86, 1], y: [12, 0] }
+      }
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
     >
       {children}
     </motion.section>

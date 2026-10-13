@@ -1,33 +1,65 @@
 import Link from "next/link";
-
-const footerLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Contact", href: "#contact" },
-];
+import { Brand } from "@/components/Brand";
+import { Icon } from "@/components/Icon";
+import { contactEmail, projects } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/[0.06] py-10">
-      <div className="container-shell flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="font-display text-lg font-semibold">COSAQ Digital</p>
-          <p className="mt-2 text-sm text-cosaq-muted">
-            Modern digital solutions for growing businesses.
+    <footer className="site-footer">
+      <div className="shell footer-grid">
+        <div className="footer-brand">
+          <Link
+            href="/#inicio"
+            className="brand"
+            aria-label="COSAQ Digital — início"
+          >
+            <Brand />
+          </Link>
+          <p>
+            Transformamos desafios de negócio em experiências e soluções
+            digitais.
           </p>
+          <span className="market-label">
+            <Icon name="globe" width={16} height={16} />
+            Brasil e Estados Unidos
+          </span>
         </div>
-
-        <div className="flex flex-wrap items-center gap-6 text-sm text-cosaq-muted">
-          {footerLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="transition hover:text-white">
-              {link.label}
+        <div>
+          <h2>Soluções</h2>
+          <Link href="/#solucoes">Sites profissionais</Link>
+          <Link href="/#solucoes">Plataformas digitais</Link>
+          <Link href="/#solucoes">Sistemas personalizados</Link>
+          <Link href="/#solucoes">Automações e integrações</Link>
+        </div>
+        <div>
+          <h2>Conheça nosso trabalho</h2>
+          {projects.map((p) => (
+            <Link key={p.slug} href={`/projetos/${p.slug}`}>
+              {p.title}
             </Link>
           ))}
+          <Link href="/#diagnostico">Diagnóstico digital</Link>
+          <Link href="/#sobre">Como trabalhamos</Link>
         </div>
-
-        <p className="text-sm text-cosaq-muted">
-          © 2026 COSAQ Digital. All rights reserved.
-        </p>
+        <div>
+          <h2>
+            Uma boa ideia começa
+            <br />
+            com uma conversa.
+          </h2>
+          <a className="footer-email" href={`mailto:${contactEmail}`}>
+            {contactEmail}
+            <Icon name="external" width={16} height={16} />
+          </a>
+          <p>
+            Conte o que sua empresa precisa. Vamos entender o próximo passo.
+          </p>
+        </div>
+      </div>
+      <div className="shell footer-bottom">
+        <span>© {new Date().getFullYear()} COSAQ Digital.</span>
+        <span>Estratégia. Tecnologia. Negócios.</span>
+        <Link href="/#inicio">Voltar ao início ↑</Link>
       </div>
     </footer>
   );

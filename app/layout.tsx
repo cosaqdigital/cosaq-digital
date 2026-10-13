@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const googleTagId = "G-JYT86CVGNS";
@@ -56,7 +58,9 @@ export default function RootLayout({
             gtag('config', '${googleTagId}');
           `}
         </Script>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
