@@ -49,14 +49,30 @@ export default function Home() {
           <div className="mt-9 flex flex-wrap gap-3"><ContactButton>Quero conversar sobre meu projeto ↗</ContactButton><Link href="#projetos" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/20 px-6 text-sm font-semibold hover:border-sky-400">Conheça nossos projetos →</Link></div>
           <div className="mt-12 flex flex-wrap gap-5 border-t border-white/10 pt-6 text-sm text-slate-300"><span>✧ Soluções sob medida</span><span>✧ Projetos digitais reais</span><span>✧ Atendimento em português</span></div>
         </div>
-        <div className="relative min-h-[360px] lg:min-h-[480px]">
-          <div className="absolute inset-8 rounded-full bg-blue-600/20 blur-[80px]" />
-          <div className="relative mt-4 rotate-[-3deg] rounded-3xl border border-sky-400/30 bg-[#091c36] p-4 shadow-[0_35px_95px_rgba(0,102,255,.22)] sm:p-6">
-            <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4"><span className="text-xs uppercase tracking-[.2em] text-sky-300">Projetos & tecnologia</span><span className="flex gap-1"><i className="h-2 w-2 rounded-full bg-sky-500" /><i className="h-2 w-2 rounded-full bg-sky-500/50" /><i className="h-2 w-2 rounded-full bg-sky-500/20" /></span></div>
-            <div className="rounded-2xl border border-sky-500/20 bg-gradient-to-br from-[#102c51] to-[#071324] p-7 sm:p-10"><p className="text-xs font-semibold uppercase tracking-[.2em] text-sky-300">Da ideia à operação</p><h2 className="mt-4 max-w-sm text-3xl font-bold leading-tight sm:text-4xl">Soluções digitais com propósito e estrutura.</h2><p className="mt-4 max-w-sm text-sm leading-7 text-slate-300">Sites • Sistemas • Plataformas • Automações</p></div>
-            <div className="mt-4 grid grid-cols-2 gap-3"><div className="rounded-xl border border-white/10 bg-white/5 p-4"><p className="text-sky-300">01 / BR</p><p className="mt-2 font-semibold">Orçamentos Brasil</p><p className="mt-1 text-xs text-slate-400">Conexões e oportunidades</p></div><div className="rounded-xl border border-white/10 bg-white/5 p-4"><p className="text-sky-300">02 / US</p><p className="mt-2 font-semibold">GetEstimateFast</p><p className="mt-1 text-xs text-slate-400">Solicitações e orçamentos</p></div></div>
+        <div className="relative min-h-[440px] lg:min-h-[500px]">
+          <div className="pointer-events-none absolute inset-8 rounded-full bg-blue-600/25 blur-[85px]" />
+          <div className="relative mt-6 overflow-hidden rounded-3xl border border-sky-400/30 bg-[#0a1a30] p-4 shadow-[0_35px_95px_rgba(0,102,255,.22)] sm:p-6">
+            <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
+              <span className="text-xs font-semibold uppercase tracking-[.2em] text-sky-300">Tecnologia desenvolvida para negócios reais</span>
+              <span className="text-sky-400">✧</span>
+            </div>
+            <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#061320]">
+              <div className="flex items-center gap-2 border-b border-white/10 bg-[#10213b] px-4 py-3">
+                <span className="h-2 w-2 rounded-full bg-sky-400"/><span className="h-2 w-2 rounded-full bg-white/20"/><span className="h-2 w-2 rounded-full bg-white/20"/>
+                <span className="ml-3 text-xs text-slate-300">getestimatefast.com</span>
+              </div>
+              <div className="relative aspect-[16/9]"><Image src="/projects/getestimatefast.png" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover object-top" alt="Tela real da plataforma GetEstimateFast" /></div>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <a href="https://orcamentobrasil.com" target="_blank" rel="noopener noreferrer" className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 transition hover:border-emerald-400">
+                <p className="text-xs font-semibold text-emerald-300">BRASIL</p><p className="mt-2 font-semibold">Orçamentos Brasil ↗</p><p className="mt-1 text-xs text-slate-300">Serviços e oportunidades</p>
+              </a>
+              <a href="https://www.getestimatefast.com" target="_blank" rel="noopener noreferrer" className="rounded-xl border border-sky-500/30 bg-sky-500/10 p-4 transition hover:border-sky-400">
+                <p className="text-xs font-semibold text-sky-300">ESTADOS UNIDOS</p><p className="mt-2 font-semibold">GetEstimateFast ↗</p><p className="mt-1 text-xs text-slate-300">Orçamentos residenciais</p>
+              </a>
+            </div>
           </div>
-          <div className="absolute -bottom-4 -left-3 rounded-xl border border-sky-500/40 bg-[#071b34] px-5 py-3 text-sm font-medium shadow-xl sm:-left-8">↗ Estratégia que vira solução</div>
+          <div className="absolute -bottom-3 left-2 rounded-xl border border-sky-500/40 bg-[#071b34] px-5 py-3 text-sm font-medium shadow-xl">Da ideia ao produto digital</div>
         </div>
       </section>
 
