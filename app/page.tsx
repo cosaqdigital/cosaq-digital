@@ -21,7 +21,7 @@ const questions = [
 ];
 
 function ContactButton({ children, secondary = false }: { children: React.ReactNode; secondary?: boolean }) {
-  return <a href="mailto:contato@cosaqdigital.com?subject=Quero%20conversar%20sobre%20meu%20projeto" className={secondary ? "inline-flex min-h-12 items-center justify-center rounded-xl border border-sky-400/40 bg-slate-950/50 px-6 text-sm font-semibold text-white transition hover:border-sky-300 hover:bg-slate-800" : "inline-flex min-h-12 items-center justify-center rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 px-6 text-sm font-semibold text-white shadow-[0_12px_35px_rgba(0,119,255,.24)] transition hover:brightness-110"}>{children}</a>;
+  return <a href="mailto:hello@cosaqdigital.com?subject=Quero%20conversar%20sobre%20meu%20projeto" className={secondary ? "inline-flex min-h-12 items-center justify-center rounded-xl border border-sky-400/40 bg-slate-950/50 px-6 text-sm font-semibold text-white transition hover:border-sky-300 hover:bg-slate-800" : "inline-flex min-h-12 items-center justify-center rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 px-6 text-sm font-semibold text-white shadow-[0_12px_35px_rgba(0,119,255,.24)] transition hover:brightness-110"}>{children}</a>;
 }
 
 export default function Home() {
