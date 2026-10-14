@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { trackConversion } from "@/lib/analytics";
 import type { ReactNode } from "react";
 import { Icon } from "@/components/Icon";
 
@@ -15,7 +18,8 @@ export function ButtonLink({
   className = "",
 }: ButtonLinkProps) {
   return (
-    <Link href={href} className={`button button-${variant} ${className}`}>
+    <Link href={href} className={`button button-${variant} ${className}`}
+      onClick={() => { if (href.includes("#contato")) trackConversion("contact_click", { source: "cta" }); }}>
       {children}
       <Icon name="arrow" width={18} height={18} />
     </Link>

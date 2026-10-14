@@ -40,6 +40,7 @@ export function Footer() {
           ))}
           <Link href="/#diagnostico">Diagnóstico digital</Link>
           <Link href="/#sobre">Como trabalhamos</Link>
+          <Link href="/privacidade">Política de Privacidade</Link>
         </div>
         <div>
           <h2>

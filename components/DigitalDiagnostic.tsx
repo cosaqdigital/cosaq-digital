@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Icon, type IconName } from "@/components/Icon";
 import { SectionReveal } from "@/components/SectionReveal";
 import { contactEmail } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 const objectives: {
   value: string;
@@ -160,6 +161,7 @@ export function DigitalDiagnostic() {
       );
       return;
     }
+    if (step === 1) trackConversion("diagnostic_complete", { objective });
     setConsent(false);
     setStep(Math.min(step + 1, 3));
   }
@@ -261,6 +263,7 @@ export function DigitalDiagnostic() {
                           value={item.value}
                           checked={objective === item.value}
                           onChange={() => {
+                            if (!objective) trackConversion("diagnostic_start", { objective: item.value });
                             setObjective(item.value);
                             setErrors({});
                           }}
@@ -487,6 +490,14 @@ export function DigitalDiagnostic() {
                     </span>
                   </label>
                   <div className="diagnostic-email">
+                    {consent && (
+                      <button className="button button-primary" type="button" onClick={() => {
+                        const summary = [`Objetivo: ${selected?.label ?? ""}`,`Segmento: ${segmentLabel}`,`Desafio: ${challenge}`,`Situação atual: ${tools}`,`Prioridade: ${priority}`].join("\\n");
+                        window.dispatchEvent(new CustomEvent("cosaq:diagnostic-contact", { detail: { service: "Diagnóstico digital", description: summary } }));
+                        trackConversion("diagnostic_contact_click", { objective });
+                        document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
+                      }}>Solicitar conversa pelo site <Icon name="arrow" width={18} height={18} /></button>
+                    )}
                     {consent ? (
                       <a className="button button-primary" href={emailHref}>
                         Abrir meu e-mail
@@ -503,8 +514,8 @@ export function DigitalDiagnostic() {
                       </button>
                     )}
                     <p>
-                      Seu aplicativo de e-mail será aberto. A mensagem só será
-                      enviada se você confirmar nela. As respostas não são
+                      Se preferir, use seu aplicativo de e-mail. A mensagem só
+                      será enviada se você confirmar. As respostas não são
                       armazenadas nesta página.
                     </p>
                   </div>

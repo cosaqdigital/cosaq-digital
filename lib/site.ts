@@ -1,7 +1,7 @@
 export const contactEmail = "admin@cosaqdigital.com";
 
 export function contactHref(subject = "Quero conversar sobre meu projeto") {
-  return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}`;
+  return `/?interesse=${encodeURIComponent(subject)}#contato`;
 }
 
 // Original artwork from the official ZIP. Only the surrounding background
