@@ -1,4 +1,4 @@
-export const contactEmail = "hello@cosaqdigital.com";
+export const contactEmail = "admin@cosaqdigital.com";
 
 export function contactHref(subject = "Quero conversar sobre meu projeto") {
   return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}`;
