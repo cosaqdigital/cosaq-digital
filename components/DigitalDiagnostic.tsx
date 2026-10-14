@@ -492,7 +492,7 @@ export function DigitalDiagnostic() {
                   <div className="diagnostic-email">
                     {consent && (
                       <button className="button button-primary" type="button" onClick={() => {
-                        const summary = [`Objetivo: ${selected?.label ?? ""}`,`Segmento: ${segmentLabel}`,`Desafio: ${challenge}`,`Situação atual: ${tools}`,`Prioridade: ${priority}`].join("\\n");
+                        const summary = [`Objetivo: ${selected?.label ?? ""}`,`Segmento: ${segmentLabel}`,`Desafio: ${challenge}`,`Situação atual: ${tools}`,`Prioridade: ${priority}`].join("\n");
                         window.dispatchEvent(new CustomEvent("cosaq:diagnostic-contact", { detail: { service: "Diagnóstico digital", description: summary } }));
                         trackConversion("diagnostic_contact_click", { objective });
                         document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
