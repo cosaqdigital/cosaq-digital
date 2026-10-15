@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Brand } from "@/components/Brand";
 import { Icon } from "@/components/Icon";
 import { contactEmail, projects } from "@/lib/site";
+import { services } from "@/lib/services";
 
 export function Footer() {
   return (
@@ -26,10 +27,10 @@ export function Footer() {
         </div>
         <div>
           <h2>Soluções</h2>
-          <Link href="/#solucoes">Sites profissionais</Link>
-          <Link href="/#solucoes">Plataformas digitais</Link>
-          <Link href="/#solucoes">Sistemas personalizados</Link>
-          <Link href="/#solucoes">Automações e integrações</Link>
+          {services.map((service) => (
+            <Link key={service.slug} href={"/solucoes/" + service.slug}>{service.title}</Link>
+          ))}
+          <Link href="/solucoes">Ver todas as soluções</Link>
         </div>
         <div>
           <h2>Conheça nosso trabalho</h2>

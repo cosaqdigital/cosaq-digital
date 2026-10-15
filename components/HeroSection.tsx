@@ -11,16 +11,16 @@ export function HeroSection() {
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow">
             <span className="status-dot" />
-            Tecnologia • Estratégia • Resultados
+            Desenvolvimento digital para negócios reais
           </p>
           <h1>
-            Transformamos ideias em soluções digitais que fazem{" "}
+            Sites, sistemas e plataformas que fazem{" "}
             <span>seu negócio avançar.</span>
           </h1>
           <p className="hero-description">
-            Criamos sites profissionais, plataformas e sistemas digitais para
-            empresas que querem conquistar mais clientes, ganhar eficiência e
-            crescer com mais estrutura.
+            Do primeiro site a uma plataforma sob medida: desenvolvemos
+            experiências digitais para atrair clientes, organizar processos e
+            transformar uma ideia em um produto funcional.
           </p>
           <div className="hero-actions">
             <ButtonLink href={contactHref()}>
@@ -33,7 +33,7 @@ export function HeroSection() {
           <div className="hero-assurance">
             <span>
               <Icon name="check" width={17} height={17} />
-              Soluções para desafios reais
+              Projetos com aplicação real
             </span>
             <span>
               <Icon name="globe" width={17} height={17} />

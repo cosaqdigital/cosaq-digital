@@ -12,20 +12,20 @@ export function PortfolioSection() {
           <div>
             <p className="eyebrow">Ideias que ganharam forma</p>
             <h2>
-              Projetos reais.
+              Projetos construídos.
               <br />
-              <span>Possibilidades concretas.</span>
+              <span>Capacidades demonstradas.</span>
             </h2>
           </div>
           <p>
-            Conheça experiências desenvolvidas para conectar pessoas,
-            simplificar jornadas e transformar necessidades em oportunidades.
+            Veja como traduzimos necessidades de negócio em sites comerciais,
+            jornadas de serviços e plataformas com diferentes níveis de operação.
           </p>
         </div>
         <div className="portfolio-grid">
           {projects.map((project, index) => (
             <article
-              className={`portfolio-card accent-${project.accent}`}
+              className={`portfolio-card accent-${project.accent}${index === 2 ? " portfolio-card-wide" : ""}`}
               key={project.slug}
             >
               <div className="portfolio-media">
@@ -47,7 +47,7 @@ export function PortfolioSection() {
                     href={`/projetos/${project.slug}`}
                     className="text-link"
                   >
-                    Explore o estudo de caso
+                    Ver como foi construído
                     <Icon name="arrow" width={18} height={18} />
                   </Link>
                   <a
