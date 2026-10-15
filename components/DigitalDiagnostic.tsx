@@ -121,6 +121,23 @@ export function DigitalDiagnostic() {
   }, [step]);
   const selected = objectives.find((item) => item.value === objective);
   const segmentLabel = segment === "Outro" ? otherSegment.trim() : segment;
+  const contextAdvice = (() => {
+    if (!selected || !segment || !tools || !priority) return null;
+    const isUrgent = priority === "Preciso começar agora";
+    const isNew = tools === "Ainda não";
+    const approach = isUrgent
+      ? "Comece pelas ações essenciais de curto prazo e valide uma primeira entrega antes de ampliar o escopo."
+      : priority === "Nos próximos meses"
+        ? "Aproveite o período para mapear processos, priorizar requisitos e preparar uma implementação por etapas."
+        : "Explore alternativas, registre as necessidades principais e compare o esforço antes de escolher uma tecnologia.";
+    const existing = isNew
+      ? "Como você informou que ainda não utiliza site ou sistema, vale mapear primeiro os canais atuais de atendimento e as informações que precisa organizar."
+      : tools === "Não sei informar"
+        ? "Na conversa inicial, podemos identificar quais ferramentas já fazem parte da sua rotina."
+        : "Como seu negócio já utiliza recursos digitais, o primeiro passo é avaliar o que pode ser aproveitado ou melhorado.";
+    return { approach, existing };
+  })();
+
   const emailBody = [
     "Olá, COSAQ Digital! Gostaria de conversar sobre meu negócio.",
     "",
@@ -459,6 +476,13 @@ export function DigitalDiagnostic() {
                     <span>{segmentLabel}</span>
                     <span>{priority}</span>
                   </div>
+                  {contextAdvice && (
+                    <div className="diagnostic-contextual-advice">
+                      <strong>Um próximo passo para o seu contexto</strong>
+                      <p>{contextAdvice.existing}</p>
+                      <p>{contextAdvice.approach}</p>
+                    </div>
+                  )}
                   <p className="field-hint">
                     Esta é uma avaliação inicial. A solução e o escopo precisam
                     ser definidos após entender melhor o seu contexto.
@@ -468,8 +492,9 @@ export function DigitalDiagnostic() {
               {step === 3 && (
                 <>
                   <p>
-                    Abra uma mensagem com o resumo do diagnóstico e revise antes
-                    de enviar para <strong>{contactEmail}</strong>.
+                    Leve o resumo da sua orientação para o formulário da COSAQ,
+                    ou utilize seu aplicativo de e-mail para escrever diretamente a
+                    <strong> {contactEmail}</strong>.
                   </p>
                   <div className="contact-summary">
                     <span className="eyebrow">Seu objetivo</span>
@@ -485,8 +510,8 @@ export function DigitalDiagnostic() {
                       onChange={(e) => setConsent(e.target.checked)}
                     />
                     <span>
-                      Autorizo incluir minhas respostas no e-mail que vou
-                      revisar e enviar à COSAQ Digital.
+                      Autorizo utilizar minhas respostas no formulário comercial ou
+                      no e-mail que eu decidir enviar à COSAQ Digital.
                     </span>
                   </label>
                   <div className="diagnostic-email">

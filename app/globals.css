@@ -2354,3 +2354,92 @@ section[id] {
   .lead-form { padding: 20px; }
   .lead-form-heading h3 { font-size: 24px; }
 }
+
+
+/* COSAQ Digital — autoridade, páginas de soluções e estudos de caso. */
+.authority-section { background: #070f1c; border-top: 1px solid #1a2b42; border-bottom: 1px solid #1a2b42; }
+.authority-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 17px; }
+.authority-grid article { border: 1px solid #263d58; border-radius: 15px; background: linear-gradient(165deg,#0e223b,#091725); padding: 28px; min-width: 0; }
+.authority-grid h3 { margin-top: 28px; font-size: clamp(19px,2vw,24px); line-height: 1.3; font-weight: 500; }
+.authority-grid p { margin-top: 13px; font-size: 13px; line-height: 1.75; }
+.authority-link { display: inline-flex; margin-top: 25px; }
+.portfolio-card-wide { grid-column: 1/-1; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 0; }
+.portfolio-card-wide .portfolio-media { min-height: 320px; height: 100%; }
+.portfolio-card-wide .portfolio-content { display: flex; flex-direction: column; justify-content: center; padding: clamp(24px,4vw,50px); }
+.portfolio-card-wide .portfolio-links { margin-top: 28px; }
+.case-technology { background: #071426; border-block: 1px solid #253b56; }
+.case-engineering-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.case-engineering-card { padding: 29px; border: 1px solid #2e4967; border-radius: 16px; background: #0b1c32; }
+.case-engineering-card h3 { margin-top: 24px; font-size: 22px; font-weight: 500; line-height: 1.3; }
+.case-engineering-card p { font-size: 13px; margin-top: 12px; }
+.case-scope-note { margin-top: 22px; font-size: 12px; color: #aebed2; padding: 16px 21px; border-left: 2px solid #4c9fff; background: #10253b; }
+.solutions-page, .solution-detail-page { background: #070f1b; }
+.service-overview-hero, .solution-detail-hero { padding-top: clamp(75px,8vw,136px); padding-bottom: 74px; }
+.service-overview-hero h1, .solution-detail-hero h1 { font-size: clamp(38px,5.5vw,72px); line-height: 1.08; max-width: 1080px; margin-top: 24px; font-weight: 500; }
+.service-overview-hero h1 span { color: #81baff; }
+.service-overview-hero > p:not(.eyebrow), .solution-detail-hero > p:not(.eyebrow) { font-size: clamp(15px,1.4vw,18px); max-width: 810px; margin-top: 25px; line-height: 1.75; }
+.service-overview-hero .button, .solution-detail-hero .button { margin-top: 28px; }
+.service-overview-list { padding-top: 10px; }
+.service-overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.service-overview-card { padding: clamp(24px,3vw,44px); border: 1px solid #29425e; background: linear-gradient(140deg,#0e233a,#081726); border-radius: 19px; display: flex; flex-direction: column; }
+.service-overview-card h2 { margin-top: 27px; font-size: clamp(26px,2.6vw,34px); font-weight: 500; }
+.service-overview-card p { font-size: 15px; margin-top: 15px; }
+.service-overview-card strong { font-size: 16px; color: #b7d6ff; font-weight: 500; line-height: 1.5; margin-top: 15px; }
+.service-overview-card .text-link { display: inline-flex; margin-top: 31px; align-self: start; }
+.solution-detail-hero > .case-back { display: inline-flex; margin-bottom: 38px; }
+.solution-applications, .solution-example { background: #0b1b2f; border-block: 1px solid #253c56; }
+.solution-list-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+.solution-list-grid article { border: 1px solid #31506e; border-radius: 15px; padding: 25px; background: #10253d; }
+.solution-list-grid article p { margin-top: 23px; color: #e6eef9; font-size: 15px; }
+.solution-delivery { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(32px,5vw,80px); }
+.solution-delivery h2, .solution-example h2, .solution-faq h2, .home-faq-grid h2 { font-size: clamp(31px,3.5vw,49px); line-height: 1.18; font-weight: 500; margin-top: 18px; }
+.solution-delivery h2 span, .solution-example h2 span, .home-faq-grid h2 span { color: #8dbfff; }
+.solution-delivery > div > p:not(.eyebrow) { font-size: 16px; margin-top: 19px; }
+.solution-check-list { display: grid; gap: 18px; margin-top: 28px; }
+.solution-check-list li { display: flex; gap: 11px; align-items: start; font-size: 15px; color: #dbe7f5; line-height: 1.7; }
+.solution-check-list li svg { color: #64b3ff; flex-shrink: 0; margin-top: 4px; }
+.solution-process-card { border-radius: 17px; border: 1px solid #335171; padding: 31px; background: #0d2137; }
+.solution-process-step { display: flex; gap: 22px; padding-block: 20px; border-bottom: 1px solid #2c4059; align-items: start; }
+.solution-process-step > span { color: #83c0ff; font-size: 14px; font-weight: 600; }
+.solution-process-step p { font-size: 14px; margin: -4px 0 0; }
+.solution-process-card small { display: block; font-size: 12px; line-height: 1.7; color: #acc4de; margin-top: 20px; }
+.solution-example-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; align-items: center; gap: 45px; }
+.solution-example h3 { font-size: 25px; font-weight: 500; margin-top: 28px; }
+.solution-example p:not(.eyebrow) { font-size: 15px; margin-top: 15px; }
+.solution-example .text-link { display: inline-flex; margin-top: 22px; }
+.solution-example-preview { display: block; padding: 20px; border: 1px solid #355578; background: #071527; border-radius: 20px; min-width: 0; }
+.solution-faq { max-width: 1000px; }
+.solution-faq h2 { margin-bottom: 28px; }
+.solution-faq details, .home-faq-list details { border-bottom: 1px solid #344660; }
+.solution-faq summary, .home-faq-list summary { cursor: pointer; color: #f0f6ff; display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 75px; padding-block: 18px; font-size: 16px; font-weight: 500; list-style: none; }
+.solution-faq summary::-webkit-details-marker, .home-faq-list summary::-webkit-details-marker { display: none; }
+.solution-faq summary span, .home-faq-list summary span { color: #8ebfff; font-size: 23px; transition: transform .2s; flex-shrink: 0; }
+.solution-faq details[open] summary span, .home-faq-list details[open] summary span { transform: rotate(45deg); }
+.solution-faq details p, .home-faq-list details p { font-size: 14px; line-height: 1.85; padding: 0 35px 22px 0; }
+.solution-end-cta { margin-top: 48px; padding: 28px; background: #102942; border: 1px solid #365e85; border-radius: 17px; display: flex; align-items: center; gap: 25px; justify-content: space-between; }
+.solution-end-cta h3 { font-size: 22px; font-weight: 500; }
+.solution-end-cta p { font-size: 13px; margin-top: 7px; }
+.home-faq-section { background: #060f1d; border-top: 1px solid #223550; }
+.home-faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(30px,5vw,90px); align-items: start; }
+.home-faq-grid > div:first-child > p:not(.eyebrow) { margin: 19px 0 25px; font-size: 15px; }
+@media (max-width: 1099px) {
+  .authority-grid, .case-engineering-grid { grid-template-columns: 1fr; }
+  .solution-list-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .home-faq-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .portfolio-card-wide { display: block; grid-column: auto; }
+  .portfolio-card-wide .portfolio-media { min-height: 0; height: auto; }
+  .service-overview-grid, .solution-delivery, .solution-example-grid { grid-template-columns: 1fr; }
+  .solution-list-grid { grid-template-columns: 1fr; }
+  .solution-end-cta { align-items: start; flex-direction: column; }
+  .solution-example-preview { padding: 12px; }
+  .service-overview-hero, .solution-detail-hero { padding-top: 72px; }
+  .service-overview-hero h1, .solution-detail-hero h1 { font-size: clamp(35px,9vw,48px); }
+  .case-engineering-card { padding: 24px; }
+}
+
+.service-card-actions { display: flex; align-items: flex-start; flex-direction: column; gap: 11px; margin-top: auto; padding-top: 12px; }
+.service-card-actions .text-link { display: inline-flex; min-height: 30px; }
+.service-card-contact { display: inline-flex; min-height: 32px; align-items: center; font-size: 12px; color: #acd2fa; text-decoration: underline; text-decoration-color: #456d9e; text-underline-offset: 4px; }
+.service-card-contact:hover { color: #fff; }

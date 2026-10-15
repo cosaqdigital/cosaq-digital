@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SectionReveal } from "@/components/SectionReveal";
 import { Icon, type IconName } from "@/components/Icon";
 import { contactHref } from "@/lib/site";
 
 const services: {
   number: string;
+  slug: string;
   title: string;
   icon: IconName;
   benefit: string;
@@ -14,6 +16,7 @@ const services: {
 }[] = [
   {
     number: "01",
+    slug: "sites-profissionais",
     title: "Sites profissionais",
     icon: "globe",
     benefit:
@@ -25,6 +28,7 @@ const services: {
   },
   {
     number: "02",
+    slug: "plataformas-digitais",
     title: "Plataformas digitais",
     icon: "layers",
     benefit:
@@ -36,6 +40,7 @@ const services: {
   },
   {
     number: "03",
+    slug: "sistemas-personalizados",
     title: "Sistemas personalizados",
     icon: "system",
     benefit: "Ferramentas desenvolvidas para organizar a operação da sua empresa.",
@@ -46,6 +51,7 @@ const services: {
   },
   {
     number: "04",
+    slug: "automacoes-integracoes",
     title: "Automações e integrações",
     icon: "workflow",
     benefit: "Menos tarefas repetitivas. Mais tempo para o que realmente importa.",
@@ -158,10 +164,15 @@ export function ServicesSection() {
               <p className="service-benefit">{service.benefit}</p>
               <p className="service-description">{service.description}</p>
               <ServiceVisual kind={service.visual} />
-              <a className="text-link" href={contactHref(service.cta)}>
-                {service.cta}
-                <Icon name="arrow" width={18} height={18} />
-              </a>
+              <div className="service-card-actions">
+                <Link className="text-link" href={"/solucoes/" + service.slug}>
+                  Entenda esta solução
+                  <Icon name="arrow" width={18} height={18} />
+                </Link>
+                <a className="service-card-contact" href={contactHref(service.cta)}>
+                  {service.cta}
+                </a>
+              </div>
             </article>
           ))}
         </div>
