@@ -99,7 +99,7 @@ ol {
   display: none !important;
 }
 section[id] {
-  scroll-margin-top: 108px;
+  scroll-margin-top: 0;
 }
 .shell,
 .container-shell {
@@ -1854,7 +1854,7 @@ section[id] {
     scroll-padding-top: 96px;
   }
   section[id] {
-    scroll-margin-top: 96px;
+    scroll-margin-top: 0;
   }
   .hero-grid {
     padding-top: 48px;
