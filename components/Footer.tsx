@@ -42,6 +42,8 @@ export function Footer() {
           <Link href="/#diagnostico">Diagnóstico digital</Link>
           <Link href="/#sobre">Como trabalhamos</Link>
           <Link href="/privacidade">Política de Privacidade</Link>
+          <Link href="/data-deletion">Exclusão de dados</Link>
+          <Link href="/terms">Termos de Uso</Link>
         </div>
         <div>
           <h2>
