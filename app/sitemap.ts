@@ -15,6 +15,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
+      url: "https://cosaqdigital.com/privacy",
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: "https://cosaqdigital.com/data-deletion",
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: "https://cosaqdigital.com/terms",
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
       url: "https://cosaqdigital.com/solucoes",
       changeFrequency: "monthly" as const,
       priority: 0.8,
