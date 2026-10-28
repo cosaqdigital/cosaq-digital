@@ -592,6 +592,14 @@ section[id] {
 .portfolio-section {
   background: #070f1b;
 }
+
+/* Compacta o topo das secoes ancoradas da home para que o titulo apareca logo abaixo do header. */
+.portfolio-section,
+.services-section,
+.diagnostic-section,
+.process-section {
+  padding-top: 56px;
+}
 .portfolio-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
