@@ -30,6 +30,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.2,
     },
     {
+      url: "https://cosaqdigital.com/para-escritores",
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
       url: "https://cosaqdigital.com/solucoes",
       changeFrequency: "monthly" as const,
       priority: 0.8,
