@@ -206,9 +206,12 @@ export const projects: Project[] = [
   },
 ];
 
+export const writersLink = { label: "Para escritores", href: "/para-escritores" };
+
 export const navigation = [
   { label: "Início", href: "/#inicio" },
   { label: "Soluções", href: "/#solucoes" },
+  writersLink,
   { label: "Projetos", href: "/#projetos" },
   { label: "Diagnóstico", href: "/#diagnostico" },
   { label: "Como trabalhamos", href: "/#sobre" },

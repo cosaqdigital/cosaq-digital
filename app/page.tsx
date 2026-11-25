@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/HeroSection";
+import { WritersFeature } from "@/components/WritersFeature";
 import { ServicesSection } from "@/components/ServicesSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
 import { AuthoritySection } from "@/components/AuthoritySection";
@@ -9,11 +10,12 @@ import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Home() {
   return (
-    <main id="conteudo">
+    <main id="conteudo" tabIndex={-1}>
       <HeroSection />
+      <WritersFeature />
+      <ServicesSection />
       <PortfolioSection />
       <AuthoritySection />
-      <ServicesSection />
       <DigitalDiagnostic />
       <ProcessSection />
       <FaqSection />

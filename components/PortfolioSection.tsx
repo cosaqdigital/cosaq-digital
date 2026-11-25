@@ -10,16 +10,12 @@ export function PortfolioSection() {
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Ideias que ganharam forma</p>
-            <h2>
-              Projetos construídos.
-              <br />
-              <span>Capacidades demonstradas.</span>
-            </h2>
+            <p className="eyebrow">Portfólio</p>
+            <h2>Veja o que já construímos</h2>
           </div>
           <p>
-            Veja como traduzimos necessidades de negócio em sites comerciais,
-            jornadas de serviços e plataformas com diferentes níveis de operação.
+            Explore sites e plataformas em funcionamento no Brasil e nos
+            Estados Unidos.
           </p>
         </div>
         <div className="portfolio-grid">
@@ -29,7 +25,6 @@ export function PortfolioSection() {
               key={project.slug}
             >
               <div className="portfolio-media">
-                <span className="portfolio-index">0{index + 1}</span>
                 <ProjectPreview project={project} />
                 <span className="project-market">{project.country}</span>
               </div>

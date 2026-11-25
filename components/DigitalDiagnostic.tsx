@@ -203,21 +203,14 @@ export function DigitalDiagnostic() {
       <div className="shell diagnostic-grid">
         <div className="diagnostic-intro">
           <p className="eyebrow">Diagnóstico digital</p>
-          <h2>
-            Seu negócio pode estar perdendo oportunidades{" "}
-            <span>que a tecnologia pode ajudar a recuperar.</span>
-          </h2>
-          <p>
-            Descubra como sua empresa pode melhorar sua presença digital,
-            organizar processos e aproveitar novas oportunidades.
-          </p>
+          <h2>Descubra o que vale melhorar primeiro</h2>
+          <p>Responda a algumas perguntas sobre sua empresa e receba uma orientação inicial.</p>
           <div className="diagnostic-note">
             <Icon name="compass" />
             <div>
-              <strong>Primeiro, entender. Depois, construir.</strong>
+              <strong>Sem cadastro</strong>
               <p>
-                Uma orientação inicial, sem cadastro. Nenhuma resposta é enviada
-                automaticamente.
+                Você decide se quer compartilhar suas respostas com a COSAQ.
               </p>
             </div>
           </div>

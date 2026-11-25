@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Brand } from "@/components/Brand";
 import { Icon } from "@/components/Icon";
 import { trackConversion } from "@/lib/analytics";
-import { navigation } from "@/lib/site";
+import { navigation, writersLink } from "@/lib/site";
 
 const writersNavigation = [
   { label: "Plataforma", href: "#experiencia" },
@@ -16,7 +16,7 @@ const writersNavigation = [
 ];
 
 export function Navbar() {
-  const writersPage = usePathname() === "/para-escritores";
+  const writersPage = usePathname() === writersLink.href;
   const desktopLinks = writersPage ? writersNavigation : navigation.slice(1);
   const mobileLinks = writersPage ? writersNavigation : navigation;
   const contact = writersPage ? {
