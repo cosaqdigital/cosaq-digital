@@ -72,7 +72,7 @@ export function Navbar() {
             aria-label="COSAQ Digital — início"
             onClick={() => setOpen(false)}
           >
-            <Brand />
+            <Brand optimized={writersPage} />
           </Link>
           <nav aria-label="Navegação principal" className="desktop-nav">
             {desktopLinks.map((link) => (

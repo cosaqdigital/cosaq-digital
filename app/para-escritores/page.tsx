@@ -73,7 +73,8 @@ export default function WritersLandingPage() {
               width={1200}
               height={800}
               sizes="(max-width: 819px) 100vw, (max-width: 1400px) 58vw, 820px"
-              preload
+              loading="eager"
+              fetchPriority="high"
             />
             <figcaption>Imagem conceitual da plataforma</figcaption>
           </figure>
