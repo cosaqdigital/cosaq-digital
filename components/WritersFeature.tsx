@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { AuthorMockup, CatalogMockup, ReaderMockup } from "@/app/para-escritores/Mockups";
+import { WritersDevicePreview } from "@/components/WritersDevicePreview";
 import { writersLink } from "@/lib/site";
 import styles from "./WritersFeature.module.css";
 
@@ -17,16 +18,11 @@ export function WritersFeature() {
           Conhecer a plataforma
         </Link>
       </div>
-      <figure className={styles.visual}>
-        <Image
-          src="/writers/plataforma-hero.webp"
-          alt="Livraria digital e leitura de e-books em notebook, tablet e celular"
-          width={1200}
-          height={800}
-          sizes="(max-width: 767px) calc(100vw - 42px), (max-width: 1199px) 53vw, (max-width: 1440px) 52vw, 705px"
-        />
-        <figcaption>Imagem conceitual da plataforma</figcaption>
-      </figure>
+      <WritersDevicePreview
+        notebook={<AuthorMockup devicePreview />}
+        tablet={<CatalogMockup devicePreview />}
+        phone={<ReaderMockup devicePreview />}
+      />
     </section>
   );
 }

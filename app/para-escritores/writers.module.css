@@ -191,6 +191,87 @@
 .readProgress { padding: 3px 7px 4px; display: flex; align-items: center; gap: 6px; color: #cbd9e7; }
 .readProgress i { height: 3px; flex: 1; border-radius: 10px; background: linear-gradient(to right, #51b9ff 30%, #2e425e 30%); }
 
+.authorMock[data-device-preview],
+.catalogMock[data-device-preview],
+.readerMock[data-device-preview] {
+  --editorial: Georgia, "Times New Roman", serif;
+  container-type: inline-size;
+  font-size: .7rem;
+}
+
+[data-device-preview] .mockNav {
+  min-height: clamp(15px, 13cqw, 32px);
+  font-size: clamp(.49rem, 4cqw, .76rem);
+}
+
+.authorMock[data-device-preview] .authorArt {
+  min-height: 45%;
+  padding: 4px min(4cqw, 22px);
+}
+
+.authorMock[data-device-preview] .authorArt strong {
+  font-size: clamp(.85rem, 5.5cqw, 2rem);
+}
+
+.authorMock[data-device-preview] .authorArt i {
+  font-size: clamp(.48rem, 2.1cqw, .72rem);
+}
+
+.authorMock[data-device-preview] .shelf {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-bottom: 6px;
+  font-size: clamp(.55rem, 2.6cqw, .85rem);
+}
+
+.authorMock[data-device-preview] .books {
+  flex: 1;
+  min-height: 0;
+}
+
+.authorMock[data-device-preview] .bookCover {
+  width: auto;
+  height: 100%;
+}
+
+.catalogMock[data-device-preview] .catalogInner {
+  min-height: 0;
+  padding: min(4cqw, 13px);
+}
+
+.catalogMock[data-device-preview] .mockTags {
+  font-size: clamp(.46rem, 3.8cqw, .72rem);
+}
+
+.catalogMock[data-device-preview] .books {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.catalogMock[data-device-preview] .bookCover {
+  width: 100%;
+  aspect-ratio: 1.45;
+}
+
+.readerMock[data-device-preview] .paper {
+  padding: clamp(6px, 6cqw, 14px);
+}
+
+.readerMock[data-device-preview] .paper > strong {
+  display: block;
+  margin-top: 3px;
+  font-size: clamp(.65rem, 10cqw, 1.3rem);
+}
+
+.readerMock[data-device-preview] .paper p {
+  font-size: clamp(.52rem, 6cqw, .86rem);
+}
+
+.readerMock[data-device-preview] .readProgress {
+  font-size: clamp(.43rem, 4cqw, .66rem);
+}
+
 .commission {
   padding-block: 34px;
   border-bottom: 1px solid #24476c;
