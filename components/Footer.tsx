@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Brand } from "@/components/Brand";
 import { Icon } from "@/components/Icon";
-import { contactEmail, projects } from "@/lib/site";
+import { contactEmail, projects, writersLink } from "@/lib/site";
 import { services } from "@/lib/services";
 
 export function Footer() {
@@ -30,6 +30,7 @@ export function Footer() {
           {services.map((service) => (
             <Link key={service.slug} href={"/solucoes/" + service.slug}>{service.title}</Link>
           ))}
+          <Link href={writersLink.href}>{writersLink.label}</Link>
           <Link href="/solucoes">Ver todas as soluções</Link>
         </div>
         <div>

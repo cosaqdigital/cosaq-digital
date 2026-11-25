@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/HeroSection";
+import { WritersFeature } from "@/components/WritersFeature";
 import { ServicesSection } from "@/components/ServicesSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
 import { AuthoritySection } from "@/components/AuthoritySection";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <main id="conteudo">
       <HeroSection />
+      <WritersFeature />
       <PortfolioSection />
       <AuthoritySection />
       <ServicesSection />
