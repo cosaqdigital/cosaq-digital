@@ -18,16 +18,15 @@ export function HeroSection() {
             <span>seu negócio avançar.</span>
           </h1>
           <p className="hero-description">
-            Do primeiro site a uma plataforma sob medida: desenvolvemos
-            experiências digitais para atrair clientes, organizar processos e
-            transformar uma ideia em um produto funcional.
+            Criamos sites para apresentar seu negócio, plataformas para lançar
+            novos serviços e sistemas para organizar a operação.
           </p>
           <div className="hero-actions">
             <ButtonLink href={contactHref()}>
               Conversar sobre meu projeto
             </ButtonLink>
-            <ButtonLink href="#projetos" variant="secondary">
-              Explorar nossos projetos
+            <ButtonLink href="#solucoes" variant="secondary">
+              Ver soluções
             </ButtonLink>
           </div>
           <div className="hero-assurance">
@@ -44,7 +43,6 @@ export function HeroSection() {
         <div className="hero-showcase" aria-label="Projetos da COSAQ Digital">
           <div className="showcase-label">
             <span>Da ideia à experiência real</span>
-            <span className="showcase-marker">01 / 02</span>
           </div>
           <Link
             href="/projetos/getestimatefast"
@@ -56,23 +54,12 @@ export function HeroSection() {
             href="/projetos/orcamentos-brasil"
             className="hero-project hero-project-secondary"
           >
-            <ProjectPreview project={projects[0]} priority />
+            <ProjectPreview project={projects[0]} />
           </Link>
           <div className="showcase-footer">
             <span className="status-dot" />
             <span>Plataformas que conectam pessoas e negócios.</span>
           </div>
-        </div>
-      </div>
-      <div className="hero-bottom">
-        <div className="shell capability-strip">
-          <span>Estratégia antes do código.</span>
-          <span>Experiências pensadas para pessoas.</span>
-          <span>Tecnologia a serviço do negócio.</span>
-          <a href="#solucoes">
-            Conheça nossas soluções
-            <Icon name="arrow" width={17} height={17} />
-          </a>
         </div>
       </div>
     </section>

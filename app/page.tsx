@@ -10,12 +10,12 @@ import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Home() {
   return (
-    <main id="conteudo">
+    <main id="conteudo" tabIndex={-1}>
       <HeroSection />
       <WritersFeature />
+      <ServicesSection />
       <PortfolioSection />
       <AuthoritySection />
-      <ServicesSection />
       <DigitalDiagnostic />
       <ProcessSection />
       <FaqSection />

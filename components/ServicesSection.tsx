@@ -1,137 +1,44 @@
-import Image from "next/image";
 import Link from "next/link";
 import { SectionReveal } from "@/components/SectionReveal";
 import { Icon, type IconName } from "@/components/Icon";
 import { contactHref } from "@/lib/site";
 
 const services: {
-  number: string;
   slug: string;
   title: string;
   icon: IconName;
-  benefit: string;
-  description: string;
+  summary: string;
   cta: string;
-  visual: string;
 }[] = [
   {
-    number: "01",
     slug: "sites-profissionais",
     title: "Sites profissionais",
     icon: "globe",
-    benefit:
-      "Sua empresa merece uma presença digital que inspira confiança e facilita novos negócios.",
-    description:
-      "Clareza na apresentação, boa experiência no celular e caminhos diretos até o contato comercial.",
+    summary: "Sites institucionais e páginas de venda que apresentam seu negócio e facilitam o contato de novos clientes.",
     cta: "Quero um site profissional",
-    visual: "website",
   },
   {
-    number: "02",
     slug: "plataformas-digitais",
     title: "Plataformas digitais",
     icon: "layers",
-    benefit:
-      "Transformamos ideias e modelos de negócio em plataformas digitais funcionais.",
-    description:
-      "Jornadas, serviços e interações organizados em produtos digitais feitos para seus usuários.",
+    summary: "Portais e marketplaces para lançar serviços e organizar a interação entre seus clientes e sua equipe.",
     cta: "Quero criar uma plataforma",
-    visual: "platform",
   },
   {
-    number: "03",
     slug: "sistemas-personalizados",
     title: "Sistemas personalizados",
     icon: "system",
-    benefit: "Ferramentas desenvolvidas para organizar a operação da sua empresa.",
-    description:
-      "Cadastros, solicitações e informações estruturados de acordo com as necessidades do seu negócio.",
+    summary: "Reúna cadastros, permissões e solicitações em um sistema que acompanha o dia a dia da sua operação.",
     cta: "Quero organizar minha operação",
-    visual: "system",
   },
   {
-    number: "04",
     slug: "automacoes-integracoes",
     title: "Automações e integrações",
     icon: "workflow",
-    benefit: "Menos tarefas repetitivas. Mais tempo para o que realmente importa.",
-    description:
-      "Avaliamos onde conectar etapas e simplificar processos, respeitando as ferramentas e o contexto da empresa.",
+    summary: "Conecte formulários, sistemas e notificações para reduzir tarefas repetitivas e retrabalho.",
     cta: "Quero simplificar processos",
-    visual: "automation",
   },
 ];
-
-function ServiceVisual({ kind }: { kind: string }) {
-  if (kind === "website")
-    return (
-      <div className="service-visual service-site">
-        <Image
-          src="/projects/wbnextlevel.png"
-          alt="Captura real do site comercial WBNextLevel"
-          width={1440}
-          height={980}
-          sizes="(max-width: 767px) 85vw, 40vw"
-        />
-        <span>Site comercial / WBNextLevel</span>
-      </div>
-    );
-  if (kind === "platform")
-    return (
-      <div className="service-visual service-platform">
-        <Image
-          src="/projects/getestimatefast.png"
-          alt="Captura real da seleção de serviços do GetEstimateFast"
-          width={1440}
-          height={980}
-          sizes="(max-width: 767px) 85vw, 40vw"
-        />
-        <span>Plataforma / GetEstimateFast</span>
-      </div>
-    );
-  return (
-    <div
-      className="service-visual service-diagram"
-      role="img"
-      aria-label={
-        kind === "system"
-          ? "Conceito de organização: cadastros, solicitações e acompanhamento"
-          : "Conceito de processo: receber, organizar e acompanhar"
-      }
-    >
-      {(kind === "system"
-        ? ["Cadastros", "Solicitações", "Acompanhamento"]
-        : ["Receber", "Organizar", "Acompanhar"]
-      ).map((label, index) => (
-        <div className="diagram-step" key={label}>
-          <span className="diagram-symbol">
-            {kind === "system" ? (
-              "0" + (index + 1)
-            ) : (
-              <Icon
-                name={index === 0 ? "mail" : index === 1 ? "layers" : "check"}
-                width={18}
-                height={18}
-              />
-            )}
-          </span>
-          <span>{label}</span>
-          {index < 2 && (
-            <Icon
-              className="diagram-arrow"
-              name="arrow"
-              width={16}
-              height={16}
-            />
-          )}
-        </div>
-      ))}
-      <span className="diagram-caption">
-        Possibilidades definidas a partir do seu negócio.
-      </span>
-    </div>
-  );
-}
 
 export function ServicesSection() {
   return (
@@ -139,35 +46,26 @@ export function ServicesSection() {
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Soluções, não apenas entregas</p>
-            <h2>
-              Tecnologia com propósito.
-              <br />
-              <span>Valor para o seu negócio.</span>
-            </h2>
+            <p className="eyebrow">Soluções</p>
+            <h2>O que podemos construir para sua empresa</h2>
           </div>
-          <p>
-            Cada empresa tem um desafio diferente. A solução começa por entender
-            o seu.
-          </p>
+          <p>Explore os serviços ou converse com a COSAQ sobre o que você precisa.</p>
         </div>
         <div className="services-grid">
           {services.map((service) => (
-            <article className="service-card" key={service.number}>
+            <article className="service-card" key={service.slug}>
               <div className="service-top">
-                <span className="icon-box">
-                  <Icon name={service.icon} />
-                </span>
-                <span className="card-number">{service.number}</span>
+                <span className="icon-box"><Icon name={service.icon} /></span>
+                <h3>{service.title}</h3>
               </div>
-              <h3>{service.title}</h3>
-              <p className="service-benefit">{service.benefit}</p>
-              <p className="service-description">{service.description}</p>
-              <ServiceVisual kind={service.visual} />
+              <p className="service-summary">{service.summary}</p>
               <div className="service-card-actions">
-                <Link className="text-link" href={"/solucoes/" + service.slug}>
-                  Entenda esta solução
-                  <Icon name="arrow" width={18} height={18} />
+                <Link
+                  className="text-link"
+                  href={"/solucoes/" + service.slug}
+                  aria-label={`Ver detalhes de ${service.title.toLowerCase()}`}
+                >
+                  Ver detalhes
                 </Link>
                 <a className="service-card-contact" href={contactHref(service.cta)}>
                   {service.cta}
