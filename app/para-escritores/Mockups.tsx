@@ -14,9 +14,12 @@ export function BookCovers({ all = false }: { all?: boolean }) {
   );
 }
 
-export function AuthorMockup({ identity = identities[0] }: { identity?: (typeof identities)[number] }) {
+export function AuthorMockup({ identity = identities[0], devicePreview = false }: {
+  identity?: (typeof identities)[number];
+  devicePreview?: boolean;
+}) {
   return (
-    <div className={styles.authorMock} data-identity={identity.style} aria-hidden="true">
+    <div className={styles.authorMock} data-identity={identity.style} data-device-preview={devicePreview || undefined} aria-hidden="true">
       <div className={styles.mockNav}><b>{identity.author}</b><span>Obras &nbsp; Sobre</span></div>
       <div className={styles.authorArt}>
         <span>{identity.genre}</span>
@@ -28,9 +31,9 @@ export function AuthorMockup({ identity = identities[0] }: { identity?: (typeof 
   );
 }
 
-export function CatalogMockup() {
+export function CatalogMockup({ devicePreview = false }: { devicePreview?: boolean }) {
   return (
-    <div className={styles.catalogMock} aria-hidden="true">
+    <div className={styles.catalogMock} data-device-preview={devicePreview || undefined} aria-hidden="true">
       <div className={styles.mockNav}><b>Livraria do autor</b><span>Minha conta</span></div>
       <div className={styles.catalogInner}>
         <strong>Explore o catálogo</strong>
@@ -41,9 +44,9 @@ export function CatalogMockup() {
   );
 }
 
-export function ReaderMockup() {
+export function ReaderMockup({ devicePreview = false }: { devicePreview?: boolean }) {
   return (
-    <div className={styles.readerMock} aria-hidden="true">
+    <div className={styles.readerMock} data-device-preview={devicePreview || undefined} aria-hidden="true">
       <div className={styles.mockNav}><b>‹ &nbsp; O Último Vale</b><span>Aa</span></div>
       <div className={styles.paper}>
         <span>CAPÍTULO I</span>
