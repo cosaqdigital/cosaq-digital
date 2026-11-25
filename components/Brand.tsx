@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { officialLogo } from "@/lib/site";
 
-export function Brand() {
+export function Brand({ optimized = false }: { optimized?: boolean }) {
   return (
     <Image
       src={officialLogo.src}
@@ -10,7 +10,7 @@ export function Brand() {
       height={officialLogo.height}
       sizes="(max-width: 767px) 175px, 220px"
       className="brand-image"
-      unoptimized
+      unoptimized={!optimized}
     />
   );
 }

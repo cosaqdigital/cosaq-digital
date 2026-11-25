@@ -1,12 +1,33 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Brand } from "@/components/Brand";
 import { Icon } from "@/components/Icon";
+import { trackConversion } from "@/lib/analytics";
 import { navigation } from "@/lib/site";
 
+const writersNavigation = [
+  { label: "Plataforma", href: "#experiencia" },
+  { label: "Leitura", href: "#leitura" },
+  { label: "Planos", href: "#investimento" },
+  { label: "Dúvidas", href: "#duvidas" },
+];
+
 export function Navbar() {
+  const writersPage = usePathname() === "/para-escritores";
+  const desktopLinks = writersPage ? writersNavigation : navigation.slice(1);
+  const mobileLinks = writersPage ? writersNavigation : navigation;
+  const contact = writersPage ? {
+    href: "#contato-escritores",
+    label: "Quero minha plataforma",
+  } : { href: "/#contato", label: "Vamos conversar" };
+  function openContact() {
+    setOpen(false);
+    if (writersPage) trackConversion("contact_click", { source: "para_escritores", placement: "menu" });
+  }
+
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
@@ -51,17 +72,17 @@ export function Navbar() {
             aria-label="COSAQ Digital — início"
             onClick={() => setOpen(false)}
           >
-            <Brand />
+            <Brand optimized={writersPage} />
           </Link>
           <nav aria-label="Navegação principal" className="desktop-nav">
-            {navigation.slice(1).map((link) => (
+            {desktopLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 {link.label}
               </Link>
             ))}
           </nav>
-          <Link href="/#contato" className="header-contact">
-            Vamos conversar
+          <Link href={contact.href} className="header-contact" onClick={openContact}>
+            {contact.label}
             <Icon name="arrow" width={17} height={17} />
           </Link>
           <button
@@ -83,7 +104,7 @@ export function Navbar() {
           className="mobile-nav"
         >
           <div className="shell">
-            {navigation.map((link) => (
+            {mobileLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -93,8 +114,8 @@ export function Navbar() {
                 <Icon name="arrow" width={17} height={17} />
               </Link>
             ))}
-            <Link href="/#contato" onClick={() => setOpen(false)}>
-              Conversar sobre meu projeto
+            <Link href={contact.href} onClick={openContact}>
+              {writersPage ? contact.label : "Conversar sobre meu projeto"}
               <Icon name="arrow" width={17} height={17} />
             </Link>
           </div>
