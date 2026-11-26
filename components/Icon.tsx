@@ -14,6 +14,7 @@ const paths = {
   code: "m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18",
   grow: "M4 20V10m8 10V4m8 16v-6M3 7l6-4 5 4 7-5",
   check: "m5 12 4 4L19 6",
+  "chevron-down": "m6 9 6 6 6-6",
   menu: "M4 6h16M4 12h16M4 18h16",
   close: "m6 6 12 12M18 6 6 18",
   mail: "M3 5h18v14H3V5Zm0 1 9 7 9-7",

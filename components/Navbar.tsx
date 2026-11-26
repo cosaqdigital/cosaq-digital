@@ -84,7 +84,7 @@ export function Navbar({ locale }: { locale: Locale }) {
               </Link>
             ))}
           </nav>
-          <div className="header-language"><LanguageSwitcher locale={locale} page={page} /></div>
+          <LanguageSwitcher locale={locale} page={page} onOpen={() => setOpen(false)} />
           <Link href={localizeHref(locale, contact.href)} className="header-contact" onClick={openContact}>
             {t(contact.label)}
             <Icon name="arrow" width={17} height={17} />
@@ -108,7 +108,6 @@ export function Navbar({ locale }: { locale: Locale }) {
           className="mobile-nav"
         >
           <div className="shell">
-            <LanguageSwitcher locale={locale} page={page} />
             {mobileLinks.map((link) => (
               <Link
                 key={link.href}

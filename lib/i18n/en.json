@@ -684,6 +684,8 @@
   "Informe um e-mail válido.": "Enter a valid email address.",
   "Use pelo menos {0} caracteres.": "Enter at least {0} characters.",
   "Idioma do site": "Website language",
+  "Idioma": "Language",
+  "Mudar idioma": "Change language",
   "País ou mercado: {0}": "Country or market: {0}",
   "País ou mercado (opcional)": "Country or market (optional)",
   "Enviando...": "Sending…",
