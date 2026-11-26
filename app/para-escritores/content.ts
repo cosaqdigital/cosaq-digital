@@ -1,15 +1,32 @@
+import type { Locale } from "@/lib/i18n/routes";
 import type { IconName } from "@/components/Icon";
 
 export const plans = [
-  { name: "Essencial", setup: "990", monthly: "147", description: "Para lançar sua primeira obra com uma livraria personalizada.", scope: ["Página do autor e vitrine", "Venda direta e acesso à leitura"] },
-  { name: "Profissional", setup: "1.490", monthly: "197", description: "Para fortalecer sua marca e organizar um catálogo em crescimento.", scope: ["Estrutura do plano Essencial", "Catálogo e gestão com escopo ampliado"] },
-  { name: "Premium", setup: "3.490", monthly: "397", description: "Para projetos com coleções, integrações ou necessidades específicas.", scope: ["Estrutura do plano Profissional", "Personalizações e integrações sob medida"] },
+  { name: "Essencial", description: "Para lançar sua primeira obra com uma livraria personalizada.", scope: ["Página do autor e vitrine", "Venda direta e acesso à leitura"] },
+  { name: "Profissional", description: "Para fortalecer sua marca e organizar um catálogo em crescimento.", scope: ["Estrutura do plano Essencial", "Catálogo e gestão com escopo ampliado"] },
+  { name: "Premium", description: "Para projetos com coleções, integrações ou necessidades específicas.", scope: ["Estrutura do plano Profissional", "Personalizações e integrações sob medida"] },
 ] as const;
 
 export const interests = ["Demonstração", "Proposta comercial"] as const;
 export const bookOptions = ["Em preparação", "1 livro", "2 a 5 livros", "6 a 10 livros", "Mais de 10 livros"] as const;
 export type WriterInterest = (typeof interests)[number];
 export type WriterPlan = (typeof plans)[number]["name"];
+
+type RegionalPricing = {
+  currency: string;
+  amounts: Record<WriterPlan, { setup: number; monthly: number }>;
+};
+
+export const regionalPricing: Partial<Record<Locale, RegionalPricing>> = {
+  pt: {
+    currency: "BRL",
+    amounts: {
+      Essencial: { setup: 990, monthly: 147 },
+      Profissional: { setup: 1490, monthly: 197 },
+      Premium: { setup: 3490, monthly: 397 },
+    },
+  },
+};
 
 export const capabilities = [
   ["Página do escritor", "Apresente sua trajetória, assine sua vitrine e dê a cada leitor um lugar para conhecer sua obra."],

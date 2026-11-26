@@ -2296,3 +2296,39 @@ section[id] {
   .service-overview-hero h1, .solution-detail-hero h1 { font-size: clamp(35px,9vw,48px); }
   .case-engineering-card { padding: 24px; }
 }
+
+.header-language {
+  flex-shrink: 0;
+}
+.language-switcher {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.site-header .language-switcher a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: .75rem;
+}
+.site-header .language-switcher a:hover,
+.site-header .language-switcher a[aria-current="true"] {
+  border-color: #385d80;
+  background: #152d47;
+  color: #fff;
+}
+@media (min-width: 1100px) and (max-width: 1350px) {
+  .header-row { gap: 16px; }
+  .desktop-nav { gap: 14px; }
+  .header-row .brand-image { width: 184px; }
+}
+@media (max-width: 1099px) {
+  .header-language { display: none; }
+  .mobile-nav .language-switcher { padding-block: 4px 9px; }
+  .site-header .mobile-nav .language-switcher a { min-width: 44px; }
+}

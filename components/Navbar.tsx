@@ -1,12 +1,15 @@
 "use client";
 
+import { translator } from "@/lib/i18n/copy";
+import { localizeHref, pageFromPath, type Locale } from "@/lib/i18n/routes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Brand } from "@/components/Brand";
 import { Icon } from "@/components/Icon";
 import { trackConversion } from "@/lib/analytics";
-import { navigation, writersLink } from "@/lib/site";
+import { navigation } from "@/lib/site";
 
 const writersNavigation = [
   { label: "Plataforma", href: "#experiencia" },
@@ -15,8 +18,10 @@ const writersNavigation = [
   { label: "Dúvidas", href: "#duvidas" },
 ];
 
-export function Navbar() {
-  const writersPage = usePathname() === writersLink.href;
+export function Navbar({ locale }: { locale: Locale }) {
+  const t = translator(locale);
+  const page = pageFromPath(usePathname()) ?? "home";
+  const writersPage = page === "writers";
   const desktopLinks = writersPage ? writersNavigation : navigation.slice(1);
   const mobileLinks = writersPage ? writersNavigation : navigation;
   const contact = writersPage ? {
@@ -61,28 +66,27 @@ export function Navbar() {
   }, [open]);
   return (
     <>
-      <a className="skip-link" href="#conteudo">
-        Ir para o conteúdo
-      </a>
+      <a className="skip-link" href="#conteudo">{t("Ir para o conteúdo")}</a>
       <header className="site-header" ref={header}>
         <div className="shell header-row">
           <Link
             className="brand"
-            href="/#inicio"
-            aria-label="COSAQ Digital — início"
+            href={localizeHref(locale, "/#inicio")}
+            aria-label={t("COSAQ Digital — início")}
             onClick={() => setOpen(false)}
           >
             <Brand optimized={writersPage} />
           </Link>
-          <nav aria-label="Navegação principal" className="desktop-nav">
+          <nav aria-label={t("Navegação principal")} className="desktop-nav">
             {desktopLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                {link.label}
+              <Link key={link.href} href={localizeHref(locale, link.href)}>
+                {t(link.label)}
               </Link>
             ))}
           </nav>
-          <Link href={contact.href} className="header-contact" onClick={openContact}>
-            {contact.label}
+          <div className="header-language"><LanguageSwitcher locale={locale} page={page} /></div>
+          <Link href={localizeHref(locale, contact.href)} className="header-contact" onClick={openContact}>
+            {t(contact.label)}
             <Icon name="arrow" width={17} height={17} />
           </Link>
           <button
@@ -91,7 +95,7 @@ export function Navbar() {
             type="button"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-label={t(open ? "Fechar menu" : "Abrir menu")}
             onClick={() => setOpen(!open)}
           >
             <Icon name={open ? "close" : "menu"} />
@@ -99,23 +103,24 @@ export function Navbar() {
         </div>
         <nav
           id="mobile-menu"
-          aria-label="Navegação mobile"
+          aria-label={t("Navegação mobile")}
           hidden={!open}
           className="mobile-nav"
         >
           <div className="shell">
+            <LanguageSwitcher locale={locale} page={page} />
             {mobileLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={localizeHref(locale, link.href)}
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                {t(link.label)}
                 <Icon name="arrow" width={17} height={17} />
               </Link>
             ))}
-            <Link href={contact.href} onClick={openContact}>
-              {writersPage ? contact.label : "Conversar sobre meu projeto"}
+            <Link href={localizeHref(locale, contact.href)} onClick={openContact}>
+              {t(writersPage ? contact.label : "Conversar sobre meu projeto")}
               <Icon name="arrow" width={17} height={17} />
             </Link>
           </div>
