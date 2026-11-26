@@ -1,3 +1,5 @@
+import { translator } from "@/lib/i18n/copy";
+import { localizeHref, type Locale } from "@/lib/i18n/routes";
 import { SectionReveal } from "@/components/SectionReveal";
 import { ButtonLink } from "@/components/ButtonLink";
 import { contactHref } from "@/lib/site";
@@ -25,23 +27,22 @@ const faqs = [
   },
 ];
 
-export function FaqSection() {
+export function FaqSection({ locale }: { locale: Locale }) {
+  const t = translator(locale);
   return (
     <SectionReveal className="section home-faq-section">
       <div className="shell home-faq-grid">
         <div>
-          <p className="eyebrow">Perguntas antes de começar</p>
-          <h2>Você traz o desafio.<br /><span>Nós esclarecemos o caminho.</span></h2>
-          <p>Um bom projeto começa com expectativas claras, não com promessas genéricas.</p>
-          <ButtonLink href={contactHref("Quero tirar dúvidas sobre meu projeto")} variant="secondary">
-            Tirar dúvidas com a COSAQ
-          </ButtonLink>
+          <p className="eyebrow">{t("Perguntas antes de começar")}</p>
+          <h2>{t("Você traz o desafio.")}<br /><span>{t("Nós esclarecemos o caminho.")}</span></h2>
+          <p>{t("Um bom projeto começa com expectativas claras, não com promessas genéricas.")}</p>
+          <ButtonLink href={localizeHref(locale, contactHref("Quero tirar dúvidas sobre meu projeto"))} variant="secondary">{t("Tirar dúvidas com a COSAQ")}</ButtonLink>
         </div>
         <div className="home-faq-list">
           {faqs.map((faq) => (
             <details key={faq.question}>
-              <summary>{faq.question}<span aria-hidden="true">+</span></summary>
-              <p>{faq.answer}</p>
+              <summary>{t(faq.question)}<span aria-hidden="true">+</span></summary>
+              <p>{t(faq.answer)}</p>
             </details>
           ))}
         </div>

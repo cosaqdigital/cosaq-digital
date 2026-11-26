@@ -451,3 +451,43 @@
 @media (prefers-reduced-motion: reduce) {
   .primary, .secondary { transition: none; }
 }
+
+.shelfComparison {
+  display: flex;
+  gap: 9px;
+  align-items: end;
+  justify-content: center;
+  padding: 12px 8px;
+  background: #08131e;
+  border: 1px solid #2a4058;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.shelfComparison span {
+  width: 24%;
+  max-width: 58px;
+  aspect-ratio: 3 / 4;
+  border: 1px solid #6a8299;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #455b72, #152d47);
+}
+.shelfComparison span:nth-child(2) {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 4px;
+  font-size: .74rem;
+}
+.comparisonCard[data-featured] .shelfComparison {
+  border-color: #4c91c7;
+  background: radial-gradient(ellipse at 50% 100%, #1b4161, #08131e 78%);
+}
+.comparisonCard[data-featured] .shelfComparison span {
+  background: linear-gradient(150deg, #2868a2, #143350);
+  border-color: #6197bf;
+}
+.comparisonCard[data-featured] .shelfComparison span:nth-child(2) {
+  border-color: #93d6ff;
+  background: linear-gradient(150deg, #2277b9, #17456c);
+  box-shadow: 0 2px 14px #4da8f56b;
+}

@@ -19,5 +19,9 @@ export function trackConversion(
 ) {
   if (typeof window === "undefined") return;
   // Never send names, emails, phone numbers or free-text answers to analytics.
-  (window as AnalyticsWindow).gtag?.("event", event, values);
+  (window as AnalyticsWindow).gtag?.("event", event, {
+    ...values,
+    locale: document.documentElement.lang,
+    page_path: window.location.pathname,
+  });
 }

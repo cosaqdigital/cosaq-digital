@@ -1,3 +1,5 @@
+import { translator } from "@/lib/i18n/copy";
+import { localizeHref, type Locale } from "@/lib/i18n/routes";
 import Link from "next/link";
 import { SectionReveal } from "@/components/SectionReveal";
 import { Icon, type IconName } from "@/components/Icon";
@@ -40,35 +42,34 @@ const services: {
   },
 ];
 
-export function ServicesSection() {
+export function ServicesSection({ locale }: { locale: Locale }) {
+  const t = translator(locale);
   return (
     <SectionReveal id="solucoes" className="section services-section">
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Soluções</p>
-            <h2>O que podemos construir para sua empresa</h2>
+            <p className="eyebrow">{t("Soluções")}</p>
+            <h2>{t("O que podemos construir para sua empresa")}</h2>
           </div>
-          <p>Explore os serviços ou converse com a COSAQ sobre o que você precisa.</p>
+          <p>{t("Explore os serviços ou converse com a COSAQ sobre o que você precisa.")}</p>
         </div>
         <div className="services-grid">
           {services.map((service) => (
             <article className="service-card" key={service.slug}>
               <div className="service-top">
                 <span className="icon-box"><Icon name={service.icon} /></span>
-                <h3>{service.title}</h3>
+                <h3>{t(service.title)}</h3>
               </div>
-              <p className="service-summary">{service.summary}</p>
+              <p className="service-summary">{t(service.summary)}</p>
               <div className="service-card-actions">
                 <Link
                   className="text-link"
-                  href={"/solucoes/" + service.slug}
-                  aria-label={`Ver detalhes de ${service.title.toLowerCase()}`}
-                >
-                  Ver detalhes
-                </Link>
-                <a className="service-card-contact" href={contactHref(service.cta)}>
-                  {service.cta}
+                  href={localizeHref(locale, "/solucoes/" + service.slug)}
+                  aria-label={t("Ver detalhes de {0}", [service.title.toLowerCase()])}
+                >{t("Ver detalhes")}</Link>
+                <a className="service-card-contact" href={localizeHref(locale, contactHref(service.cta))}>
+                  {t(service.cta)}
                 </a>
               </div>
             </article>

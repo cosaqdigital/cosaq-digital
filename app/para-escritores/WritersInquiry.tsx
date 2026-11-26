@@ -1,7 +1,10 @@
 "use client";
 
+import { translator } from "@/lib/i18n/copy";
+import { localizeHref, type Locale } from "@/lib/i18n/routes";
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { clearLeadError, validateLead } from "@/lib/i18n/form-validation";
 import { trackConversion } from "@/lib/analytics";
 import { contactEmail } from "@/lib/site";
 import { bookOptions, interests, type WriterInterest, type WriterPlan } from "./content";
@@ -27,7 +30,8 @@ export function WritersCTA({ children, interest, plan, placement, secondary = fa
   );
 }
 
-export function WritersInquiry() {
+export function WritersInquiry({ locale }: { locale: Locale }) {
+  const t = translator(locale);
   const [choice, setChoice] = useState<{ interest: string; plan?: WriterPlan }>({ interest: "" });
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
@@ -61,6 +65,8 @@ export function WritersInquiry() {
     const data = {
       ...Object.fromEntries(fields),
       source: "writers",
+      locale,
+      page: window.location.pathname,
       plan: choice.plan ?? "",
       consent: fields.has("consent"),
     };
@@ -70,7 +76,7 @@ export function WritersInquiry() {
     try {
       const response = await fetch("/api/lead", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-COSAQ-Locale": locale },
         body: JSON.stringify(data),
       });
       const result: { ok?: boolean; message?: string } = await response.json();
@@ -88,64 +94,65 @@ export function WritersInquiry() {
     }
   }
 
-  const mail = `mailto:${contactEmail}?subject=${encodeURIComponent(choice.plan ? `Plataforma para escritores | Plano ${choice.plan}` : "Plataforma para escritores | COSAQ Digital")}`;
+  const mail = `mailto:${contactEmail}?subject=${encodeURIComponent(choice.plan ? t("Plataforma para escritores | Plano {0}", [t(choice.plan)]) : t("Plataforma para escritores | COSAQ Digital"))}`;
 
   if (sent) {
     return (
       <div className={styles.form} role="status">
-        <h3 ref={confirmation} tabIndex={-1}>Recebemos sua solicitação.</h3>
-        <p>Nossa equipe vai responder pelo e-mail informado para conversar sobre sua livraria.</p>
+        <h3 ref={confirmation} tabIndex={-1}>{t("Recebemos sua solicitação.")}</h3>
+        <p>{t("Nossa equipe vai responder pelo e-mail informado para conversar sobre sua livraria.")}</p>
       </div>
     );
   }
 
   return (
-    <form className={styles.form} method="post" onSubmit={submit} onFocusCapture={() => {
+    <form className={styles.form} method="post" onSubmit={submit} onInvalidCapture={validateLead(locale)} onInput={clearLeadError} onFocusCapture={() => {
       if (started.current) return;
       started.current = true;
       trackConversion("lead_form_start", { source });
     }}>
-      <h3>Conte sobre seu projeto</h3>
+      <h3>{t("Conte sobre seu projeto")}</h3>
       {choice.plan && (
-        <p className={styles.selectedPlan}>Plano de interesse: <strong>{choice.plan}</strong>{" "}
-          <button type="button" disabled={busy} onClick={() => setChoice({ interest: choice.interest })}>Remover</button>
+        <p className={styles.selectedPlan}>{t("Plano de interesse:")} <strong>{t(choice.plan)}</strong>{" "}
+          <button type="button" disabled={busy} onClick={() => setChoice({ interest: choice.interest })}>{t("Remover")}</button>
         </p>
       )}
       <fieldset disabled={busy} className={styles.formFields}>
         <div className={styles.fields}>
-          <label>Nome<input name="name" ref={nameField} autoComplete="name" required minLength={2} maxLength={100} /></label>
-          <label>E-mail<input name="email" type="email" autoComplete="email" required maxLength={150} /></label>
-          <label>WhatsApp <small>(opcional)</small><input name="phone" type="tel" autoComplete="tel" maxLength={35} placeholder="DDD + número" /></label>
-          <label>Quantidade de livros
-            <select name="books" required defaultValue="">
-              <option value="" disabled>Selecione</option>
-              {bookOptions.map((option) => <option key={option}>{option}</option>)}
+          <label>{t("Nome")}<input name="name" ref={nameField} autoComplete="name" required minLength={2} maxLength={100} /></label>
+          <label>{t("E-mail")}<input name="email" type="email" autoComplete="email" required maxLength={150} /></label>
+          <label>{t("WhatsApp")} <small>{t("(opcional)")}</small><input name="phone" type="tel" autoComplete="tel" maxLength={35} placeholder={t("DDD + número")} /></label>
+          <label>{t("Quantidade de livros")}<select name="books" required defaultValue="">
+              <option value="" disabled>{t("Selecione")}</option>
+              {bookOptions.map((option) => <option key={option} value={option}>{t(option)}</option>)}
             </select>
           </label>
         </div>
-        <label>O que você gostaria de receber?
-          <select name="interest" value={choice.interest} required onChange={(event) => setChoice({
+        <label>{t("O que você gostaria de receber?")}<select name="interest" value={choice.interest} required onChange={(event) => setChoice({
             interest: event.target.value,
             plan: event.target.value === "Proposta comercial" ? choice.plan : undefined,
           })}>
-            <option value="" disabled>Selecione</option>
-            {interests.map((interest) => <option key={interest}>{interest}</option>)}
+            <option value="" disabled>{t("Selecione")}</option>
+            {interests.map((interest) => <option key={interest} value={interest}>{t(interest)}</option>)}
           </select>
         </label>
-        <label>Sobre seu projeto <small>(opcional)</small>
-          <textarea name="description" rows={3} maxLength={2000} placeholder="Em que etapa está sua obra ou catálogo?" />
+        <label>{t("País ou mercado (opcional)")}
+          <input name="market" autoComplete="country-name" maxLength={80} />
+        </label>
+        <label>{t("Sobre seu projeto")} <small>{t("(opcional)")}</small>
+          <textarea name="description" rows={3} maxLength={2000} placeholder={t("Em que etapa está sua obra ou catálogo?")} />
         </label>
         <div className={styles.honeypot} aria-hidden="true">
-          <label>Deixe este campo vazio<input name="website" tabIndex={-1} autoComplete="off" /></label>
+          <label>{t("Deixe este campo vazio")}<input name="website" tabIndex={-1} autoComplete="off" /></label>
         </div>
         <label className={styles.consent}>
           <input name="consent" type="checkbox" required />
-          <span>Autorizo o uso dos dados para responder à solicitação, conforme a <Link href="/privacidade">Política de Privacidade</Link>.</span>
+          <span>{t("Autorizo o uso dos dados para responder à solicitação, conforme a")} <Link href={localizeHref(locale, "/privacidade")}>{t("Política de Privacidade")}</Link>.</span>
         </label>
       </fieldset>
-      {error && <p className={styles.error} role="alert">{error}</p>}
-      <button className={styles.primary} type="submit" disabled={busy}>{busy ? "Enviando…" : "Enviar solicitação"}</button>
-      <p className={styles.fallback}>Prefere falar por e-mail? <a href={mail} onClick={() => trackConversion("contact_click", { source, placement: "email" })}>{contactEmail}</a></p>
+      {error && <p className={styles.error} role="alert">{t(error)}</p>}
+      <button className={styles.primary} type="submit" disabled={busy}>{t(busy ? "Enviando…" : "Enviar solicitação")}</button>
+      <p className={styles.fallback}>{t("Prefere falar por e-mail?")} <a href={localizeHref(locale, mail)} onClick={() => trackConversion("contact_click", { source, placement: "email" })}>{t(contactEmail)}</a></p>
     </form>
   );
 }

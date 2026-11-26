@@ -1,5 +1,7 @@
 "use client";
 
+import { translator } from "@/lib/i18n/copy";
+import { localizeHref, type Locale } from "@/lib/i18n/routes";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Icon, type IconName } from "@/components/Icon";
 import { SectionReveal } from "@/components/SectionReveal";
@@ -101,7 +103,8 @@ const objectives: {
 ];
 const stepNames = ["Objetivo", "Contexto", "Orientação", "Conversa"];
 
-export function DigitalDiagnostic() {
+export function DigitalDiagnostic({ locale }: { locale: Locale }) {
+  const t = translator(locale);
   const [step, setStep] = useState(0);
   const [objective, setObjective] = useState("");
   const [segment, setSegment] = useState("");
@@ -202,23 +205,21 @@ export function DigitalDiagnostic() {
     <SectionReveal id="diagnostico" className="section diagnostic-section">
       <div className="shell diagnostic-grid">
         <div className="diagnostic-intro">
-          <p className="eyebrow">Diagnóstico digital</p>
-          <h2>Descubra o que vale melhorar primeiro</h2>
-          <p>Responda a algumas perguntas sobre sua empresa e receba uma orientação inicial.</p>
+          <p className="eyebrow">{t("Diagnóstico digital")}</p>
+          <h2>{t("Descubra o que vale melhorar primeiro")}</h2>
+          <p>{t("Responda a algumas perguntas sobre sua empresa e receba uma orientação inicial.")}</p>
           <div className="diagnostic-note">
             <Icon name="compass" />
             <div>
-              <strong>Sem cadastro</strong>
-              <p>
-                Você decide se quer compartilhar suas respostas com a COSAQ.
-              </p>
+              <strong>{t("Sem cadastro")}</strong>
+              <p>{t("Você decide se quer compartilhar suas respostas com a COSAQ.")}</p>
             </div>
           </div>
         </div>
         <div className="diagnostic-card">
           <ol
             className="diagnostic-progress"
-            aria-label="Etapas do diagnóstico"
+            aria-label={t("Etapas do diagnóstico")}
           >
             {stepNames.map((label, index) => (
               <li
@@ -235,33 +236,33 @@ export function DigitalDiagnostic() {
                     "0" + (index + 1)
                   )}
                 </span>
-                <span>{label}</span>
+                <span>{t(label)}</span>
               </li>
             ))}
           </ol>
           <form onSubmit={advance} noValidate>
             <div className="diagnostic-step">
-              <span className="step-kicker">Etapa 0{step + 1} / 04</span>
+              <span className="step-kicker">{t("Etapa 0")}{step + 1} / 04</span>
               <h3 ref={heading} tabIndex={-1}>
                 {
-                  [
+                  t([
                     "O que você quer melhorar?",
                     "Conte um pouco sobre o seu negócio.",
                     "Seu ponto de partida.",
                     "Vamos transformar isso em uma conversa.",
-                  ][step]
+                  ][step])
                 }
               </h3>
               {step === 0 && (
                 <>
-                  <p>Escolha o objetivo mais próximo do seu momento.</p>
+                  <p>{t("Escolha o objetivo mais próximo do seu momento.")}</p>
                   <fieldset
                     className="objective-grid"
                     aria-describedby={
                       errors.objective ? "objective-error" : undefined
                     }
                   >
-                    <legend className="sr-only">Objetivo da empresa</legend>
+                    <legend className="sr-only">{t("Objetivo da empresa")}</legend>
                     {objectives.map((item) => (
                       <label
                         className={`objective-option ${objective === item.value ? "selected" : ""}`}
@@ -282,7 +283,7 @@ export function DigitalDiagnostic() {
                           }
                         />
                         <Icon name={item.icon} width={21} height={21} />
-                        <span>{item.label}</span>
+                        <span>{t(item.label)}</span>
                         <span className="radio-mark" aria-hidden="true" />
                       </label>
                     ))}
@@ -293,7 +294,7 @@ export function DigitalDiagnostic() {
                       id="objective-error"
                       role="alert"
                     >
-                      {errors.objective}
+                      {t(errors.objective)}
                     </p>
                   )}
                 </>
@@ -301,7 +302,7 @@ export function DigitalDiagnostic() {
               {step === 1 && (
                 <div className="context-fields">
                   <div className="form-field">
-                    <label htmlFor="segment">Segmento da empresa</label>
+                    <label htmlFor="segment">{t("Segmento da empresa")}</label>
                     <select
                       id="segment"
                       value={segment}
@@ -311,7 +312,7 @@ export function DigitalDiagnostic() {
                         errors.segment ? "segment-error" : undefined
                       }
                     >
-                      <option value="">Selecione uma opção</option>
+                      <option value="">{t("Selecione uma opção")}</option>
                       {[
                         "Serviços",
                         "Comércio e varejo",
@@ -321,20 +322,18 @@ export function DigitalDiagnostic() {
                         "Saúde e bem-estar",
                         "Outro",
                       ].map((v) => (
-                        <option key={v}>{v}</option>
+                        <option key={v} value={v}>{t(v)}</option>
                       ))}
                     </select>
                     {segment === "Outro" && (
                       <>
-                        <label htmlFor="other-segment" className="sr-only">
-                          Qual é o segmento?
-                        </label>
+                        <label htmlFor="other-segment" className="sr-only">{t("Qual é o segmento?")}</label>
                         <input
                           id="other-segment"
                           maxLength={80}
                           value={otherSegment}
                           onChange={(e) => setOtherSegment(e.target.value)}
-                          placeholder="Qual é o segmento?"
+                          placeholder={t("Qual é o segmento?")}
                           aria-invalid={Boolean(errors.segment)}
                         />
                       </>
@@ -345,21 +344,19 @@ export function DigitalDiagnostic() {
                         className="field-error"
                         role="alert"
                       >
-                        {errors.segment}
+                        {t(errors.segment)}
                       </p>
                     )}
                   </div>
                   <div className="form-field">
-                    <label htmlFor="challenge">
-                      Qual é o principal desafio?
-                    </label>
+                    <label htmlFor="challenge">{t("Qual é o principal desafio?")}</label>
                     <textarea
                       id="challenge"
                       rows={3}
                       maxLength={500}
                       value={challenge}
                       onChange={(e) => setChallenge(e.target.value)}
-                      placeholder="Ex.: meus pedidos chegam por canais diferentes e é difícil acompanhar."
+                      placeholder={t("Ex.: meus pedidos chegam por canais diferentes e é difícil acompanhar.")}
                       aria-invalid={Boolean(errors.challenge)}
                       aria-describedby={
                         errors.challenge
@@ -367,23 +364,20 @@ export function DigitalDiagnostic() {
                           : "challenge-hint"
                       }
                     />
-                    <span className="field-hint" id="challenge-hint">
-                      Até 500 caracteres. Evite dados pessoais ou informações
-                      confidenciais.
-                    </span>
+                    <span className="field-hint" id="challenge-hint">{t("Até 500 caracteres. Evite dados pessoais ou informações confidenciais.")}</span>
                     {errors.challenge && (
                       <p
                         id="challenge-error"
                         className="field-error"
                         role="alert"
                       >
-                        {errors.challenge}
+                        {t(errors.challenge)}
                       </p>
                     )}
                   </div>
                   <div className="form-row">
                     <div className="form-field">
-                      <label htmlFor="tools">Já utiliza site ou sistema?</label>
+                      <label htmlFor="tools">{t("Já utiliza site ou sistema?")}</label>
                       <select
                         id="tools"
                         value={tools}
@@ -393,7 +387,7 @@ export function DigitalDiagnostic() {
                           errors.tools ? "tools-error" : undefined
                         }
                       >
-                        <option value="">Selecione</option>
+                        <option value="">{t("Selecione")}</option>
                         {[
                           "Ainda não",
                           "Tenho um site",
@@ -401,7 +395,7 @@ export function DigitalDiagnostic() {
                           "Tenho site e sistema",
                           "Não sei informar",
                         ].map((v) => (
-                          <option key={v}>{v}</option>
+                          <option key={v} value={v}>{t(v)}</option>
                         ))}
                       </select>
                       {errors.tools && (
@@ -410,12 +404,12 @@ export function DigitalDiagnostic() {
                           className="field-error"
                           role="alert"
                         >
-                          {errors.tools}
+                          {t(errors.tools)}
                         </p>
                       )}
                     </div>
                     <div className="form-field">
-                      <label htmlFor="priority">Qual é a prioridade?</label>
+                      <label htmlFor="priority">{t("Qual é a prioridade?")}</label>
                       <select
                         id="priority"
                         value={priority}
@@ -425,13 +419,13 @@ export function DigitalDiagnostic() {
                           errors.priority ? "priority-error" : undefined
                         }
                       >
-                        <option value="">Selecione</option>
+                        <option value="">{t("Selecione")}</option>
                         {[
                           "Preciso começar agora",
                           "Nos próximos meses",
                           "Estou explorando possibilidades",
                         ].map((v) => (
-                          <option key={v}>{v}</option>
+                          <option key={v} value={v}>{t(v)}</option>
                         ))}
                       </select>
                       {errors.priority && (
@@ -440,7 +434,7 @@ export function DigitalDiagnostic() {
                           className="field-error"
                           role="alert"
                         >
-                          {errors.priority}
+                          {t(errors.priority)}
                         </p>
                       )}
                     </div>
@@ -450,50 +444,42 @@ export function DigitalDiagnostic() {
               {step === 2 && selected && (
                 <>
                   <div className="recommendation">
-                    <span className="eyebrow">Orientação preliminar</span>
-                    <h4>{selected.recommendation}</h4>
-                    <p>{selected.description}</p>
+                    <span className="eyebrow">{t("Orientação preliminar")}</span>
+                    <h4>{t(selected.recommendation)}</h4>
+                    <p>{t(selected.description)}</p>
                   </div>
-                  <p className="recommendation-caption">
-                    Um caminho para explorar:
-                  </p>
+                  <p className="recommendation-caption">{t("Um caminho para explorar:")}</p>
                   <ul className="recommendation-list">
                     {selected.next.map((item) => (
                       <li key={item}>
                         <Icon name="check" width={17} height={17} />
-                        {item}
+                        {t(item)}
                       </li>
                     ))}
                   </ul>
                   <div className="context-summary">
-                    <span>{segmentLabel}</span>
-                    <span>{priority}</span>
+                    <span>{t(segmentLabel)}</span>
+                    <span>{t(priority)}</span>
                   </div>
                   {contextAdvice && (
                     <div className="diagnostic-contextual-advice">
-                      <strong>Um próximo passo para o seu contexto</strong>
-                      <p>{contextAdvice.existing}</p>
-                      <p>{contextAdvice.approach}</p>
+                      <strong>{t("Um próximo passo para o seu contexto")}</strong>
+                      <p>{t(contextAdvice.existing)}</p>
+                      <p>{t(contextAdvice.approach)}</p>
                     </div>
                   )}
-                  <p className="field-hint">
-                    Esta é uma avaliação inicial. A solução e o escopo precisam
-                    ser definidos após entender melhor o seu contexto.
-                  </p>
+                  <p className="field-hint">{t("Esta é uma avaliação inicial. A solução e o escopo precisam ser definidos após entender melhor o seu contexto.")}</p>
                 </>
               )}
               {step === 3 && (
                 <>
-                  <p>
-                    Leve o resumo da sua orientação para o formulário da COSAQ,
-                    ou utilize seu aplicativo de e-mail para escrever diretamente a
-                    <strong> {contactEmail}</strong>.
+                  <p>{t("Leve o resumo da sua orientação para o formulário da COSAQ, ou utilize seu aplicativo de e-mail para escrever diretamente a")}<strong> {t(contactEmail)}</strong>.
                   </p>
                   <div className="contact-summary">
-                    <span className="eyebrow">Seu objetivo</span>
-                    <strong>{selected?.label}</strong>
+                    <span className="eyebrow">{t("Seu objetivo")}</span>
+                    <strong>{t(selected?.label)}</strong>
                     <span>
-                      {segmentLabel} · {priority}
+                      {t(segmentLabel)} · {t(priority)}
                     </span>
                   </div>
                   <label className="consent-option">
@@ -502,10 +488,7 @@ export function DigitalDiagnostic() {
                       checked={consent}
                       onChange={(e) => setConsent(e.target.checked)}
                     />
-                    <span>
-                      Autorizo utilizar minhas respostas no formulário comercial ou
-                      no e-mail que eu decidir enviar à COSAQ Digital.
-                    </span>
+                    <span>{t("Autorizo utilizar minhas respostas no formulário comercial ou no e-mail que eu decidir enviar à COSAQ Digital.")}</span>
                   </label>
                   <div className="diagnostic-email">
                     {consent && (
@@ -514,28 +497,20 @@ export function DigitalDiagnostic() {
                         window.dispatchEvent(new CustomEvent("cosaq:diagnostic-contact", { detail: { service: "Diagnóstico digital", description: summary } }));
                         trackConversion("diagnostic_contact_click", { objective });
                         document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
-                      }}>Solicitar conversa pelo site <Icon name="arrow" width={18} height={18} /></button>
+                      }}>{t("Solicitar conversa pelo site")} <Icon name="arrow" width={18} height={18} /></button>
                     )}
                     {consent ? (
-                      <a className="button button-primary" href={emailHref}>
-                        Abrir meu e-mail
-                        <Icon name="mail" width={18} height={18} />
+                      <a className="button button-primary" href={localizeHref(locale, emailHref)}>{t("Abrir meu e-mail")}<Icon name="mail" width={18} height={18} />
                       </a>
                     ) : (
                       <button
                         className="button button-primary"
                         disabled
                         type="button"
-                      >
-                        Abrir meu e-mail
-                        <Icon name="mail" width={18} height={18} />
+                      >{t("Abrir meu e-mail")}<Icon name="mail" width={18} height={18} />
                       </button>
                     )}
-                    <p>
-                      Se preferir, use seu aplicativo de e-mail. A mensagem só
-                      será enviada se você confirmar. As respostas não são
-                      armazenadas nesta página.
-                    </p>
+                    <p>{t("Se preferir, use seu aplicativo de e-mail. A mensagem só será enviada se você confirmar. As respostas não são armazenadas nesta página.")}</p>
                   </div>
                 </>
               )}
@@ -543,27 +518,23 @@ export function DigitalDiagnostic() {
             <div className="diagnostic-controls">
               {step > 0 ? (
                 <button className="button-back" type="button" onClick={back}>
-                  <Icon name="back" width={17} height={17} />
-                  Voltar
-                </button>
+                  <Icon name="back" width={17} height={17} />{t("Voltar")}</button>
               ) : (
-                <span className="field-hint">Sem cadastro. No seu ritmo.</span>
+                <span className="field-hint">{t("Sem cadastro. No seu ritmo.")}</span>
               )}
               {step < 3 ? (
                 <button className="button button-primary" type="submit">
                   {
-                    [
+                    t([
                       "Continuar",
                       "Ver minha orientação",
                       "Preparar uma conversa",
-                    ][step]
+                    ][step])
                   }
                   <Icon name="arrow" width={18} height={18} />
                 </button>
               ) : (
-                <button className="button-back" type="button" onClick={restart}>
-                  Recomeçar
-                  <Icon name="compass" width={17} height={17} />
+                <button className="button-back" type="button" onClick={restart}>{t("Recomeçar")}<Icon name="compass" width={17} height={17} />
                 </button>
               )}
             </div>

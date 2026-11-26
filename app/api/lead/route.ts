@@ -1,6 +1,8 @@
 import { createHmac } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { bookOptions, interests, plans } from "@/app/para-escritores/content";
+import { translator } from "@/lib/i18n/copy";
+import { isLocale, languages, pageFromPath } from "@/lib/i18n/routes";
 import { contactEmail } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -51,32 +53,42 @@ function allowWriterAttempt(key: string) {
 }
 
 export async function POST(req: NextRequest) {
+  const requestLocale = req.headers.get("x-cosaq-locale");
+  const early = translator(isLocale(requestLocale) ? requestLocale : "pt");
   if (!req.headers.get("content-type")?.startsWith("application/json")) {
-    return response(415, "Formato de envio não suportado.");
+    return response(415, early("Formato de envio não suportado."));
   }
   const origin = req.headers.get("origin");
   if (!origin || origin !== new URL(req.url).origin) {
-    return response(403, "Origem de solicitação inválida.");
+    return response(403, early("Origem de solicitação inválida."));
   }
   const length = Number(req.headers.get("content-length") ?? 0);
-  if (length > 12000) return response(413, "Solicitação muito grande.");
+  if (length > 12000) return response(413, early("Solicitação muito grande."));
 
   let data: Record<string, unknown>;
   try {
     data = await req.json();
     if (!data || typeof data !== "object" || Array.isArray(data)) {
-      return response(400, "Dados inválidos.");
+      return response(400, early("Dados inválidos."));
     }
     if (JSON.stringify(data).length > 12000) {
-      return response(413, "Solicitação muito grande.");
+      return response(413, early("Solicitação muito grande."));
     }
   } catch {
-    return response(400, "Não foi possível ler a solicitação.");
+    return response(400, early("Não foi possível ler a solicitação."));
   }
+
+  const locale = isLocale(data.locale) ? data.locale : isLocale(requestLocale) ? requestLocale : "pt";
+  const t = translator(locale);
+  const market = field(data.market ?? "", 80);
+  const sourcePage = field(data.page ?? "", 160);
+  const pageLocale = sourcePage?.split("/")[1];
+  const page = sourcePage && pageLocale === locale && pageFromPath(sourcePage) ? sourcePage : "";
+  if (market === null) return response(400, t("Dados inválidos."));
 
   const isWriter = data.source === "writers";
   if (data.website) {
-    if (isWriter) return response(400, "Não foi possível validar a solicitação.");
+    if (isWriter) return response(400, t("Não foi possível validar a solicitação."));
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
@@ -89,10 +101,10 @@ export async function POST(req: NextRequest) {
     !email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ||
     phone === null || description === null || data.consent !== true
   ) {
-    return response(400, "Confira os campos obrigatórios e autorize o contato.");
+    return response(400, t("Confira os campos obrigatórios e autorize o contato."));
   }
   if (phone && phone.replace(/\D/g, "").length < 8) {
-    return response(400, "Confira o número de telefone informado.");
+    return response(400, t("Confira o número de telefone informado."));
   }
 
   let subject: string;
@@ -103,10 +115,10 @@ export async function POST(req: NextRequest) {
     const plan = field(data.plan ?? "", 60);
     if (!books || !writerBookOptions.has(books) || !interest || !writerInterests.has(interest) ||
         plan === null || (plan && (!writerPlans.has(plan) || interest !== "Proposta comercial"))) {
-      return response(400, "Selecione a quantidade de livros e o tipo de solicitação.");
+      return response(400, t("Selecione a quantidade de livros e o tipo de solicitação."));
     }
     if (phone && (!/^\+?[\d\s().-]+$/.test(phone) || phone.replace(/\D/g, "").length > 15)) {
-      return response(400, "Confira o número de WhatsApp informado.");
+      return response(400, t("Confira o número de WhatsApp informado."));
     }
     subject = `COSAQ Digital | Plataforma para escritores: ${interest}`;
     details = [
@@ -121,7 +133,7 @@ export async function POST(req: NextRequest) {
     const timeline = field(data.timeline, 60);
     if (company === null || !service || !serviceOptions.has(service) ||
         !timeline || !timingOptions.has(timeline) || description.length < 12) {
-      return response(400, "Confira os campos obrigatórios e autorize o contato.");
+      return response(400, t("Confira os campos obrigatórios e autorize o contato."));
     }
     subject = `COSAQ Digital | Novo projeto: ${service}`;
     details = [
@@ -137,7 +149,7 @@ export async function POST(req: NextRequest) {
   if (!key || !from) {
     return response(
       503,
-      "O envio automático está temporariamente indisponível. Utilize a opção de e-mail abaixo.",
+      t("O envio automático está temporariamente indisponível. Utilize a opção de e-mail abaixo."),
     );
   }
 
@@ -150,6 +162,9 @@ export async function POST(req: NextRequest) {
     "",
     `Nome: ${name}`,
     `E-mail: ${email}`,
+    `Idioma: ${languages[locale].tag}`,
+    `Página de origem: ${page || (isWriter ? "/para-escritores" : "/")}`,
+    `País ou mercado: ${market || "Não informado"}`,
     ...details,
     "",
     "Necessidade descrita:",
@@ -163,7 +178,7 @@ export async function POST(req: NextRequest) {
     const visitor = (process.env.VERCEL ? req.headers.get("x-vercel-forwarded-for") : null) || email.toLowerCase();
     const visitorKey = createHmac("sha256", key).update(visitor).digest("hex");
     if (!allowWriterAttempt(visitorKey)) {
-      return response(429, "Aguarde alguns minutos antes de tentar novamente ou fale por e-mail.");
+      return response(429, t("Aguarde alguns minutos antes de tentar novamente ou fale por e-mail."));
     }
     // Identical submissions and retries reuse the same key across server instances.
     headers["Idempotency-Key"] = "writers/" + createHmac("sha256", key).update(body).digest("hex");
@@ -178,13 +193,13 @@ export async function POST(req: NextRequest) {
     });
     if (!sent.ok) {
       // Do not return provider errors, API keys or private data to the browser.
-      return response(502, "Não foi possível confirmar o envio. Utilize a opção de e-mail abaixo.");
+      return response(502, t("Não foi possível confirmar o envio. Utilize a opção de e-mail abaixo."));
     }
     return NextResponse.json(
-      { ok: true, message: "Solicitação recebida. Entraremos em contato." },
+      { ok: true, message: t("Solicitação recebida. Entraremos em contato.") },
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch {
-    return response(502, "Serviço indisponível no momento. Utilize a opção de e-mail abaixo.");
+    return response(502, t("Serviço indisponível no momento. Utilize a opção de e-mail abaixo."));
   }
 }

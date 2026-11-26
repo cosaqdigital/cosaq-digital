@@ -1,53 +1,11 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/lib/site";
-import { services } from "@/lib/services";
+import { languageLinks, locales, pageIds, pagePath, siteOrigin } from "@/lib/i18n/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://cosaqdigital.com",
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: "https://cosaqdigital.com/privacidade",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: "https://cosaqdigital.com/privacy",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: "https://cosaqdigital.com/data-deletion",
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: "https://cosaqdigital.com/terms",
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: "https://www.cosaqdigital.com/para-escritores",
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: "https://cosaqdigital.com/solucoes",
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    ...services.map((service) => ({
-      url: "https://cosaqdigital.com/solucoes/" + service.slug,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+  return locales.flatMap((locale) =>
+    pageIds.map((page) => ({
+      url: siteOrigin + pagePath(locale, page),
+      alternates: { languages: languageLinks(page) },
     })),
-    ...projects.map((project) => ({
-      url: `https://cosaqdigital.com/projetos/${project.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-  ];
+  );
 }

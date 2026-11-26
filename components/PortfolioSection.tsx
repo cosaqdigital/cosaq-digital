@@ -1,22 +1,22 @@
+import { translator } from "@/lib/i18n/copy";
+import { localizeHref, type Locale } from "@/lib/i18n/routes";
 import Link from "next/link";
 import { SectionReveal } from "@/components/SectionReveal";
 import { ProjectPreview } from "@/components/ProjectPreview";
 import { Icon } from "@/components/Icon";
 import { projects } from "@/lib/site";
 
-export function PortfolioSection() {
+export function PortfolioSection({ locale }: { locale: Locale }) {
+  const t = translator(locale);
   return (
     <SectionReveal id="projetos" className="section portfolio-section">
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Portfólio</p>
-            <h2>Veja o que já construímos</h2>
+            <p className="eyebrow">{t("Portfólio")}</p>
+            <h2>{t("Veja o que já construímos")}</h2>
           </div>
-          <p>
-            Explore sites e plataformas em funcionamento no Brasil e nos
-            Estados Unidos.
-          </p>
+          <p>{t("Explore sites e plataformas em funcionamento no Brasil e nos Estados Unidos.")}</p>
         </div>
         <div className="portfolio-grid">
           {projects.map((project, index) => (
@@ -25,35 +25,31 @@ export function PortfolioSection() {
               key={project.slug}
             >
               <div className="portfolio-media">
-                <ProjectPreview project={project} />
-                <span className="project-market">{project.country}</span>
+                <ProjectPreview locale={locale} project={project} />
+                <span className="project-market">{t(project.country)}</span>
               </div>
               <div className="portfolio-content">
-                <p className="eyebrow">{project.market}</p>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <p className="eyebrow">{t(project.market)}</p>
+                <h3>{t(project.title)}</h3>
+                <p>{t(project.description)}</p>
                 <ul className="capability-tags">
                   {project.capabilities.map((feature) => (
-                    <li key={feature}>{feature}</li>
+                    <li key={feature}>{t(feature)}</li>
                   ))}
                 </ul>
                 <div className="portfolio-links">
                   <Link
-                    href={`/projetos/${project.slug}`}
+                    href={localizeHref(locale, `/projetos/${project.slug}`)}
                     className="text-link"
-                  >
-                    Ver como foi construído
-                    <Icon name="arrow" width={18} height={18} />
+                  >{t("Ver como foi construído")}<Icon name="arrow" width={18} height={18} />
                   </Link>
                   <a
-                    href={project.href}
+                    href={localizeHref(locale, project.href)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-external"
-                    aria-label={`Conhecer projeto ${project.title} — abre em nova aba`}
-                  >
-                    Conhecer projeto
-                    <Icon name="external" width={16} height={16} />
+                    aria-label={t("Conhecer projeto {0} — abre em nova aba", [project.title])}
+                  >{t("Conhecer projeto")}<Icon name="external" width={16} height={16} />
                   </a>
                 </div>
               </div>

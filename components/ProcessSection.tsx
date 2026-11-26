@@ -1,3 +1,5 @@
+import { translator } from "@/lib/i18n/copy";
+import type { Locale } from "@/lib/i18n/routes";
 import { SectionReveal } from "@/components/SectionReveal";
 import { Icon, type IconName } from "@/components/Icon";
 
@@ -28,23 +30,19 @@ const steps: { title: string; description: string; icon: IconName }[] = [
   },
 ];
 
-export function ProcessSection() {
+export function ProcessSection({ locale }: { locale: Locale }) {
+  const t = translator(locale);
   return (
     <SectionReveal id="sobre" className="section process-section">
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Como trabalhamos</p>
-            <h2>
-              Um caminho claro.
-              <br />
-              <span>Do desafio à solução.</span>
+            <p className="eyebrow">{t("Como trabalhamos")}</p>
+            <h2>{t("Um caminho claro.")}<br />
+              <span>{t("Do desafio à solução.")}</span>
             </h2>
           </div>
-          <p>
-            Você participa das decisões. Nós conectamos estratégia, design e
-            desenvolvimento em cada etapa.
-          </p>
+          <p>{t("Você participa das decisões. Nós conectamos estratégia, design e desenvolvimento em cada etapa.")}</p>
         </div>
         <ol className="process-grid">
           {steps.map((step, index) => (
@@ -53,8 +51,8 @@ export function ProcessSection() {
                 <Icon name={step.icon} />
                 <span>0{index + 1}</span>
               </div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
+              <h3>{t(step.title)}</h3>
+              <p>{t(step.description)}</p>
             </li>
           ))}
         </ol>
