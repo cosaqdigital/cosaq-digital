@@ -2,9 +2,9 @@ export const locales = ["pt", "en", "es"] as const;
 export type Locale = (typeof locales)[number];
 
 export const languages = {
-  pt: { tag: "pt-BR", name: "Português", short: "PT", og: "pt_BR" },
-  en: { tag: "en-US", name: "English", short: "EN", og: "en_US" },
-  es: { tag: "es", name: "Español", short: "ES", og: "es_ES" },
+  pt: { tag: "pt-BR", name: "Português", og: "pt_BR" },
+  en: { tag: "en-US", name: "English", og: "en_US" },
+  es: { tag: "es", name: "Español", og: "es_ES" },
 } as const;
 
 export const siteOrigin = "https://www.cosaqdigital.com";
